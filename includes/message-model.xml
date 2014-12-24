@@ -1,0 +1,13 @@
+<uber @version>
+  <data @id @name @rel @url @action @transclude @model @sending @accepting>
+    <data ... >
+       <data ... />
+    </data>  
+  </data>
+  <error>
+    <data @id @name @rel @url @action @transclude @model @sending @accepting>
+       <data ... />
+    </data>
+  </error>
+</uber>
+
