@@ -1,0 +1,4 @@
+specification
+=============
+
+UBER Hypermedia Specification
