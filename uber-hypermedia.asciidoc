@@ -3,9 +3,9 @@ Uniform Basis for Exchanging Representations (UBER)
 :toc:
 :numbered:
 :linkcss:
-:scriptsdir: js
 :stylesdir: css
 :stylesheet: uber-custom.css
+:scriptsdir: js
 
 == Document Status
 Author::
