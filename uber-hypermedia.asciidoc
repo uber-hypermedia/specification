@@ -1,6 +1,6 @@
 Uniform Basis for Exchanging Representations (UBER)
 ===================================================
-:toc2:
+:toc:
 :numbered:
 :linkcss:
 :stylesdir: js
