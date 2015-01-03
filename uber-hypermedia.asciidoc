@@ -3,7 +3,7 @@ Uniform Basis for Exchanging Representations (UBER)
 :toc:
 :numbered:
 :linkcss:
-:stylesdir: js
+:scriptsdir: js
 :stylesdir: css
 :stylesheet: uber-custom.css
 
