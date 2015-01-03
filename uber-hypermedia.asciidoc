@@ -1,11 +1,11 @@
 Uniform Basis for Exchanging Representations (UBER)
 ===================================================
-:toc:
+:toc2:
 :numbered:
 :linkcss:
+:stylesdir: js
 :stylesdir: css
 :stylesheet: uber-custom.css
-:html5:
 
 == Document Status
 Author::
