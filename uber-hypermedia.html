@@ -1,732 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.9" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>Uniform Basis for Exchanging Representations (UBER)</title>
-<style type="text/css">
-/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
-
-/* Default font. */
-body {
-  font-family: Georgia,serif;
-}
-
-/* Title font. */
-h1, h2, h3, h4, h5, h6,
-div.title, caption.title,
-thead, p.table.header,
-#toctitle,
-#author, #revnumber, #revdate, #revremark,
-#footer {
-  font-family: Arial,Helvetica,sans-serif;
-}
-
-body {
-  margin: 1em 5% 1em 5%;
-}
-
-a {
-  color: blue;
-  text-decoration: underline;
-}
-a:visited {
-  color: fuchsia;
-}
-
-em {
-  font-style: italic;
-  color: navy;
-}
-
-strong {
-  font-weight: bold;
-  color: #083194;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #527bbd;
-  margin-top: 1.2em;
-  margin-bottom: 0.5em;
-  line-height: 1.3;
-}
-
-h1, h2, h3 {
-  border-bottom: 2px solid silver;
-}
-h2 {
-  padding-top: 0.5em;
-}
-h3 {
-  float: left;
-}
-h3 + * {
-  clear: left;
-}
-h5 {
-  font-size: 1.0em;
-}
-
-div.sectionbody {
-  margin-left: 0;
-}
-
-hr {
-  border: 1px solid silver;
-}
-
-p {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-ul, ol, li > p {
-  margin-top: 0;
-}
-ul > li     { color: #aaa; }
-ul > li > * { color: black; }
-
-.monospaced, code, pre {
-  font-family: "Courier New", Courier, monospace;
-  font-size: inherit;
-  color: navy;
-  padding: 0;
-  margin: 0;
-}
-pre {
-  white-space: pre-wrap;
-}
-
-#author {
-  color: #527bbd;
-  font-weight: bold;
-  font-size: 1.1em;
-}
-#email {
-}
-#revnumber, #revdate, #revremark {
-}
-
-#footer {
-  font-size: small;
-  border-top: 2px solid silver;
-  padding-top: 0.5em;
-  margin-top: 4.0em;
-}
-#footer-text {
-  float: left;
-  padding-bottom: 0.5em;
-}
-#footer-badges {
-  float: right;
-  padding-bottom: 0.5em;
-}
-
-#preamble {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-}
-div.imageblock, div.exampleblock, div.verseblock,
-div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
-div.admonitionblock {
-  margin-top: 1.0em;
-  margin-bottom: 1.5em;
-}
-div.admonitionblock {
-  margin-top: 2.0em;
-  margin-bottom: 2.0em;
-  margin-right: 10%;
-  color: #606060;
-}
-
-div.content { /* Block element content. */
-  padding: 0;
-}
-
-/* Block element titles. */
-div.title, caption.title {
-  color: #527bbd;
-  font-weight: bold;
-  text-align: left;
-  margin-top: 1.0em;
-  margin-bottom: 0.5em;
-}
-div.title + * {
-  margin-top: 0;
-}
-
-td div.title:first-child {
-  margin-top: 0.0em;
-}
-div.content div.title:first-child {
-  margin-top: 0.0em;
-}
-div.content + div.title {
-  margin-top: 0.0em;
-}
-
-div.sidebarblock > div.content {
-  background: #ffffee;
-  border: 1px solid #dddddd;
-  border-left: 4px solid #f0f0f0;
-  padding: 0.5em;
-}
-
-div.listingblock > div.content {
-  border: 1px solid #dddddd;
-  border-left: 5px solid #f0f0f0;
-  background: #f8f8f8;
-  padding: 0.5em;
-}
-
-div.quoteblock, div.verseblock {
-  padding-left: 1.0em;
-  margin-left: 1.0em;
-  margin-right: 10%;
-  border-left: 5px solid #f0f0f0;
-  color: #888;
-}
-
-div.quoteblock > div.attribution {
-  padding-top: 0.5em;
-  text-align: right;
-}
-
-div.verseblock > pre.content {
-  font-family: inherit;
-  font-size: inherit;
-}
-div.verseblock > div.attribution {
-  padding-top: 0.75em;
-  text-align: left;
-}
-/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
-div.verseblock + div.attribution {
-  text-align: left;
-}
-
-div.admonitionblock .icon {
-  vertical-align: top;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-decoration: underline;
-  color: #527bbd;
-  padding-right: 0.5em;
-}
-div.admonitionblock td.content {
-  padding-left: 0.5em;
-  border-left: 3px solid #dddddd;
-}
-
-div.exampleblock > div.content {
-  border-left: 3px solid #dddddd;
-  padding-left: 0.5em;
-}
-
-div.imageblock div.content { padding-left: 0; }
-span.image img { border-style: none; vertical-align: text-bottom; }
-a.image:visited { color: white; }
-
-dl {
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
-}
-dt {
-  margin-top: 0.5em;
-  margin-bottom: 0;
-  font-style: normal;
-  color: navy;
-}
-dd > *:first-child {
-  margin-top: 0.1em;
-}
-
-ul, ol {
-    list-style-position: outside;
-}
-ol.arabic {
-  list-style-type: decimal;
-}
-ol.loweralpha {
-  list-style-type: lower-alpha;
-}
-ol.upperalpha {
-  list-style-type: upper-alpha;
-}
-ol.lowerroman {
-  list-style-type: lower-roman;
-}
-ol.upperroman {
-  list-style-type: upper-roman;
-}
-
-div.compact ul, div.compact ol,
-div.compact p, div.compact p,
-div.compact div, div.compact div {
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
-}
-
-tfoot {
-  font-weight: bold;
-}
-td > div.verse {
-  white-space: pre;
-}
-
-div.hdlist {
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
-}
-div.hdlist tr {
-  padding-bottom: 15px;
-}
-dt.hdlist1.strong, td.hdlist1.strong {
-  font-weight: bold;
-}
-td.hdlist1 {
-  vertical-align: top;
-  font-style: normal;
-  padding-right: 0.8em;
-  color: navy;
-}
-td.hdlist2 {
-  vertical-align: top;
-}
-div.hdlist.compact tr {
-  margin: 0;
-  padding-bottom: 0;
-}
-
-.comment {
-  background: yellow;
-}
-
-.footnote, .footnoteref {
-  font-size: 0.8em;
-}
-
-span.footnote, span.footnoteref {
-  vertical-align: super;
-}
-
-#footnotes {
-  margin: 20px 0 20px 0;
-  padding: 7px 0 0 0;
-}
-
-#footnotes div.footnote {
-  margin: 0 0 5px 0;
-}
-
-#footnotes hr {
-  border: none;
-  border-top: 1px solid silver;
-  height: 1px;
-  text-align: left;
-  margin-left: 0;
-  width: 20%;
-  min-width: 100px;
-}
-
-div.colist td {
-  padding-right: 0.5em;
-  padding-bottom: 0.3em;
-  vertical-align: top;
-}
-div.colist td img {
-  margin-top: 0.3em;
-}
-
-@media print {
-  #footer-badges { display: none; }
-}
-
-#toc {
-  margin-bottom: 2.5em;
-}
-
-#toctitle {
-  color: #527bbd;
-  font-size: 1.1em;
-  font-weight: bold;
-  margin-top: 1.0em;
-  margin-bottom: 0.1em;
-}
-
-div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-div.toclevel2 {
-  margin-left: 2em;
-  font-size: 0.9em;
-}
-div.toclevel3 {
-  margin-left: 4em;
-  font-size: 0.9em;
-}
-div.toclevel4 {
-  margin-left: 6em;
-  font-size: 0.9em;
-}
-
-span.aqua { color: aqua; }
-span.black { color: black; }
-span.blue { color: blue; }
-span.fuchsia { color: fuchsia; }
-span.gray { color: gray; }
-span.green { color: green; }
-span.lime { color: lime; }
-span.maroon { color: maroon; }
-span.navy { color: navy; }
-span.olive { color: olive; }
-span.purple { color: purple; }
-span.red { color: red; }
-span.silver { color: silver; }
-span.teal { color: teal; }
-span.white { color: white; }
-span.yellow { color: yellow; }
-
-span.aqua-background { background: aqua; }
-span.black-background { background: black; }
-span.blue-background { background: blue; }
-span.fuchsia-background { background: fuchsia; }
-span.gray-background { background: gray; }
-span.green-background { background: green; }
-span.lime-background { background: lime; }
-span.maroon-background { background: maroon; }
-span.navy-background { background: navy; }
-span.olive-background { background: olive; }
-span.purple-background { background: purple; }
-span.red-background { background: red; }
-span.silver-background { background: silver; }
-span.teal-background { background: teal; }
-span.white-background { background: white; }
-span.yellow-background { background: yellow; }
-
-span.big { font-size: 2em; }
-span.small { font-size: 0.6em; }
-
-span.underline { text-decoration: underline; }
-span.overline { text-decoration: overline; }
-span.line-through { text-decoration: line-through; }
-
-div.unbreakable { page-break-inside: avoid; }
+<link rel="stylesheet" href="css/asciidoc.css" type="text/css">
 
 
-/*
- * xhtml11 specific
- *
- * */
-
-div.tableblock {
-  margin-top: 1.0em;
-  margin-bottom: 1.5em;
-}
-div.tableblock > table {
-  border: 3px solid #527bbd;
-}
-thead, p.table.header {
-  font-weight: bold;
-  color: #527bbd;
-}
-p.table {
-  margin-top: 0;
-}
-/* Because the table frame attribute is overriden by CSS in most browsers. */
-div.tableblock > table[frame="void"] {
-  border-style: none;
-}
-div.tableblock > table[frame="hsides"] {
-  border-left-style: none;
-  border-right-style: none;
-}
-div.tableblock > table[frame="vsides"] {
-  border-top-style: none;
-  border-bottom-style: none;
-}
-
-
-/*
- * html5 specific
- *
- * */
-
-table.tableblock {
-  margin-top: 1.0em;
-  margin-bottom: 1.5em;
-}
-thead, p.tableblock.header {
-  font-weight: bold;
-  color: #527bbd;
-}
-p.tableblock {
-  margin-top: 0;
-}
-table.tableblock {
-  border-width: 3px;
-  border-spacing: 0px;
-  border-style: solid;
-  border-color: #527bbd;
-  border-collapse: collapse;
-}
-th.tableblock, td.tableblock {
-  border-width: 1px;
-  padding: 4px;
-  border-style: solid;
-  border-color: #527bbd;
-}
-
-table.tableblock.frame-topbot {
-  border-left-style: hidden;
-  border-right-style: hidden;
-}
-table.tableblock.frame-sides {
-  border-top-style: hidden;
-  border-bottom-style: hidden;
-}
-table.tableblock.frame-none {
-  border-style: hidden;
-}
-
-th.tableblock.halign-left, td.tableblock.halign-left {
-  text-align: left;
-}
-th.tableblock.halign-center, td.tableblock.halign-center {
-  text-align: center;
-}
-th.tableblock.halign-right, td.tableblock.halign-right {
-  text-align: right;
-}
-
-th.tableblock.valign-top, td.tableblock.valign-top {
-  vertical-align: top;
-}
-th.tableblock.valign-middle, td.tableblock.valign-middle {
-  vertical-align: middle;
-}
-th.tableblock.valign-bottom, td.tableblock.valign-bottom {
-  vertical-align: bottom;
-}
-
-
-/*
- * manpage specific
- *
- * */
-
-body.manpage h1 {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  border-top: 2px solid silver;
-  border-bottom: 2px solid silver;
-}
-body.manpage h2 {
-  border-style: none;
-}
-body.manpage div.sectionbody {
-  margin-left: 3em;
-}
-
-@media print {
-  body.manpage div#toc { display: none; }
-}
-
-
-</style>
+<link rel="stylesheet" href="css/uber-custom.css" type="text/css">
+<script type="text/javascript" src="js/asciidoc.js"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
-var asciidoc = {  // Namespace.
-
-/////////////////////////////////////////////////////////////////////
-// Table Of Contents generator
-/////////////////////////////////////////////////////////////////////
-
-/* Author: Mihai Bazon, September 2002
- * http://students.infoiasi.ro/~mishoo
- *
- * Table Of Content generator
- * Version: 0.4
- *
- * Feel free to use this script under the terms of the GNU General Public
- * License, as long as you do not remove or alter this notice.
- */
-
- /* modified by Troy D. Hanson, September 2006. License: GPL */
- /* modified by Stuart Rackham, 2006, 2009. License: GPL */
-
-// toclevels = 1..4.
-toc: function (toclevels) {
-
-  function getText(el) {
-    var text = "";
-    for (var i = el.firstChild; i != null; i = i.nextSibling) {
-      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
-        text += i.data;
-      else if (i.firstChild != null)
-        text += getText(i);
-    }
-    return text;
-  }
-
-  function TocEntry(el, text, toclevel) {
-    this.element = el;
-    this.text = text;
-    this.toclevel = toclevel;
-  }
-
-  function tocEntries(el, toclevels) {
-    var result = new Array;
-    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
-    // Function that scans the DOM tree for header elements (the DOM2
-    // nodeIterator API would be a better technique but not supported by all
-    // browsers).
-    var iterate = function (el) {
-      for (var i = el.firstChild; i != null; i = i.nextSibling) {
-        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
-          var mo = re.exec(i.tagName);
-          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
-            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
-          }
-          iterate(i);
-        }
-      }
-    }
-    iterate(el);
-    return result;
-  }
-
-  var toc = document.getElementById("toc");
-  if (!toc) {
-    return;
-  }
-
-  // Delete existing TOC entries in case we're reloading the TOC.
-  var tocEntriesToRemove = [];
-  var i;
-  for (i = 0; i < toc.childNodes.length; i++) {
-    var entry = toc.childNodes[i];
-    if (entry.nodeName.toLowerCase() == 'div'
-     && entry.getAttribute("class")
-     && entry.getAttribute("class").match(/^toclevel/))
-      tocEntriesToRemove.push(entry);
-  }
-  for (i = 0; i < tocEntriesToRemove.length; i++) {
-    toc.removeChild(tocEntriesToRemove[i]);
-  }
-
-  // Rebuild TOC entries.
-  var entries = tocEntries(document.getElementById("content"), toclevels);
-  for (var i = 0; i < entries.length; ++i) {
-    var entry = entries[i];
-    if (entry.element.id == "")
-      entry.element.id = "_toc_" + i;
-    var a = document.createElement("a");
-    a.href = "#" + entry.element.id;
-    a.appendChild(document.createTextNode(entry.text));
-    var div = document.createElement("div");
-    div.appendChild(a);
-    div.className = "toclevel" + entry.toclevel;
-    toc.appendChild(div);
-  }
-  if (entries.length == 0)
-    toc.parentNode.removeChild(toc);
-},
-
-
-/////////////////////////////////////////////////////////////////////
-// Footnotes generator
-/////////////////////////////////////////////////////////////////////
-
-/* Based on footnote generation code from:
- * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
- */
-
-footnotes: function () {
-  // Delete existing footnote entries in case we're reloading the footnodes.
-  var i;
-  var noteholder = document.getElementById("footnotes");
-  if (!noteholder) {
-    return;
-  }
-  var entriesToRemove = [];
-  for (i = 0; i < noteholder.childNodes.length; i++) {
-    var entry = noteholder.childNodes[i];
-    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
-      entriesToRemove.push(entry);
-  }
-  for (i = 0; i < entriesToRemove.length; i++) {
-    noteholder.removeChild(entriesToRemove[i]);
-  }
-
-  // Rebuild footnote entries.
-  var cont = document.getElementById("content");
-  var spans = cont.getElementsByTagName("span");
-  var refs = {};
-  var n = 0;
-  for (i=0; i<spans.length; i++) {
-    if (spans[i].className == "footnote") {
-      n++;
-      var note = spans[i].getAttribute("data-note");
-      if (!note) {
-        // Use [\s\S] in place of . so multi-line matches work.
-        // Because JavaScript has no s (dotall) regex flag.
-        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
-        spans[i].innerHTML =
-          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
-          "' title='View footnote' class='footnote'>" + n + "</a>]";
-        spans[i].setAttribute("data-note", note);
-      }
-      noteholder.innerHTML +=
-        "<div class='footnote' id='_footnote_" + n + "'>" +
-        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
-        n + "</a>. " + note + "</div>";
-      var id =spans[i].getAttribute("id");
-      if (id != null) refs["#"+id] = n;
-    }
-  }
-  if (n == 0)
-    noteholder.parentNode.removeChild(noteholder);
-  else {
-    // Process footnoterefs.
-    for (i=0; i<spans.length; i++) {
-      if (spans[i].className == "footnoteref") {
-        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
-        href = href.match(/#.*/)[0];  // Because IE return full URL.
-        n = refs[href];
-        spans[i].innerHTML =
-          "[<a href='#_footnote_" + n +
-          "' title='View footnote' class='footnote'>" + n + "</a>]";
-      }
-    }
-  }
-},
-
-install: function(toclevels) {
-  var timerId;
-
-  function reinstall() {
-    asciidoc.footnotes();
-    if (toclevels) {
-      asciidoc.toc(toclevels);
-    }
-  }
-
-  function reinstallAndRemoveTimer() {
-    clearInterval(timerId);
-    reinstall();
-  }
-
-  timerId = setInterval(reinstall, 500);
-  if (document.addEventListener)
-    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
-  else
-    window.onload = reinstallAndRemoveTimer;
-}
-
-}
 asciidoc.install(2);
 /*]]>*/
 </script>
@@ -767,7 +51,7 @@ Last Updated
 </dt>
 <dd>
 <p>
-  2014-12-29
+  2015-01-02
 </p>
 </dd>
 <dt class="hdlist1">
@@ -775,7 +59,7 @@ Proposed IANA Registrations
 </dt>
 <dd>
 <p>
-  <code>application/vnd.amundsen-uber+xml</code>, <code>application/vnd.amundsen-uber+json</code>
+  <span class="monospaced">application/vnd.amundsen-uber+xml</span>, <span class="monospaced">application/vnd.amundsen-uber+json</span>
 </p>
 </dd>
 <dt class="hdlist1">
@@ -848,7 +132,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 <div class="paragraph"><p>There are only three elements in the UBER message model:</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
-<code>&lt;uber&gt;</code>
+<span class="monospaced">&lt;uber&gt;</span>
 </dt>
 <dd>
 <p>
@@ -856,7 +140,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>&lt;data&gt;</code>
+<span class="monospaced">&lt;data&gt;</span>
 </dt>
 <dd>
 <p>
@@ -864,7 +148,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>&lt;error&gt;</code>
+<span class="monospaced">&lt;error&gt;</span>
 </dt>
 <dd>
 <p>
@@ -878,7 +162,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 <div class="paragraph"><p>There are eleven properties in the UBER design:</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
-<code>id</code>
+<span class="monospaced">id</span>
 </dt>
 <dd>
 <p>
@@ -886,7 +170,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>name</code>
+<span class="monospaced">name</span>
 </dt>
 <dd>
 <p>
@@ -894,7 +178,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>rel</code>
+<span class="monospaced">rel</span>
 </dt>
 <dd>
 <p>
@@ -902,7 +186,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>url</code>
+<span class="monospaced">url</span>
 </dt>
 <dd>
 <p>
@@ -910,7 +194,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>action</code>
+<span class="monospaced">action</span>
 </dt>
 <dd>
 <p>
@@ -918,7 +202,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>transclude</code>
+<span class="monospaced">transclude</span>
 </dt>
 <dd>
 <p>
@@ -926,15 +210,15 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>model</code>
+<span class="monospaced">model</span>
 </dt>
 <dd>
 <p>
-  Contains a template to be used to construct URL query strings or request bodies depending on the value in the <code>action</code> property.
+  Contains a template to be used to construct URL query strings or request bodies depending on the value in the <span class="monospaced">action</span> property.
 </p>
 </dd>
 <dt class="hdlist1">
-<code>sending</code>
+<span class="monospaced">sending</span>
 </dt>
 <dd>
 <p>
@@ -942,7 +226,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>accepting</code>
+<span class="monospaced">accepting</span>
 </dt>
 <dd>
 <p>
@@ -950,15 +234,15 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </p>
 </dd>
 <dt class="hdlist1">
-<code>value</code>
+<span class="monospaced">value</span>
 </dt>
 <dd>
 <p>
-  In the XML variant of the UBER mesage format, inner text of the <code>&lt;data&gt;</code> element contains the value associated with that element. In the JSON variant there is a <code>value</code> property that contains the associated value.
+  In the XML variant of the UBER mesage format, inner text of the <span class="monospaced">&lt;data&gt;</span> element contains the value associated with that element. In the JSON variant there is a <span class="monospaced">value</span> property that contains the associated value.
 </p>
 </dd>
 <dt class="hdlist1">
-<code>version</code>
+<span class="monospaced">version</span>
 </dt>
 <dd>
 <p>
@@ -972,50 +256,50 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 <div class="paragraph"><p>There are seven reserved strings used as possible values for UBER properties.</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
-Reserved strings for the <code>action</code> property
+Reserved strings for the <span class="monospaced">action</span> property
 </dt>
 <dd>
 <div class="ulist"><ul>
 <li>
 <p>
-<code>append</code> : An unsafe, non-idempotent request to add a new item.
+<span class="monospaced">append</span> : An unsafe, non-idempotent request to add a new item.
 </p>
 </li>
 <li>
 <p>
-<code>partial</code> : An unsafe, non-idempotent request to modify parts of an existing item.
+<span class="monospaced">partial</span> : An unsafe, non-idempotent request to modify parts of an existing item.
 </p>
 </li>
 <li>
 <p>
-<code>read</code> : A safe, idempotent request.
+<span class="monospaced">read</span> : A safe, idempotent request.
 </p>
 </li>
 <li>
 <p>
-<code>remove</code> : An unsafe, idempotent request to delete an existing item.
+<span class="monospaced">remove</span> : An unsafe, idempotent request to delete an existing item.
 </p>
 </li>
 <li>
 <p>
-<code>replace</code> : An unsafe, idempotent request to replace an existing item.
+<span class="monospaced">replace</span> : An unsafe, idempotent request to replace an existing item.
 </p>
 </li>
 </ul></div>
 </dd>
 <dt class="hdlist1">
-Reserved strings for the <code>transclude</code> property
+Reserved strings for the <span class="monospaced">transclude</span> property
 </dt>
 <dd>
 <div class="ulist"><ul>
 <li>
 <p>
-<code>true</code> : embed the results of the request into the current document
+<span class="monospaced">true</span> : embed the results of the request into the current document
 </p>
 </li>
 <li>
 <p>
-<code>false</code> : treat the associated <code>url</code> value as a <em>navigation</em> to a new document.
+<span class="monospaced">false</span> : treat the associated <span class="monospaced">url</span> value as a <em>navigation</em> to a new document.
 </p>
 </li>
 </ul></div>
@@ -1045,11 +329,11 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </div>
 <div class="sect2">
 <h3 id="_message_map">3.5. Message Map</h3>
-<div class="paragraph"><p>Below is a simple &#8216;map&#8217; of the UBER message format (XML variant). Along with the three elements, there are ten properties (indicated by the &#8216;@&#8217; character). The <code>&lt;data&gt;</code> element can appear as a child element of <code>&lt;uber&gt;</code> and <code>&lt;error&gt;</code> and may be nested as many times as needed.</p></div>
+<div class="paragraph"><p>Below is a simple &#8216;map&#8217; of the UBER message format (XML variant). Along with the three elements, there are ten properties (indicated by the &#8216;@&#8217; character). The <span class="monospaced">&lt;data&gt;</span> element can appear as a child element of <span class="monospaced">&lt;uber&gt;</span> and <span class="monospaced">&lt;error&gt;</span> and may be nested as many times as needed.</p></div>
 <div class="listingblock">
 <div class="title">UBER Message Model (XML)</div>
-<div class="content">
-<pre><code>&lt;uber @version&gt;
+<div class="content monospaced">
+<pre>&lt;uber @version&gt;
   &lt;data @id @name @rel @url @action @transclude @model @sending @accepting&gt;
     &lt;data ... &gt;
        &lt;data ... /&gt;
@@ -1060,46 +344,46 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
        &lt;data ... /&gt;
     &lt;/data&gt;
   &lt;/error&gt;
-&lt;/uber&gt;</code></pre>
+&lt;/uber&gt;</pre>
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="_the_code_lt_uber_gt_code_element">3.6. The <code>&lt;uber&gt;</code> Element</h3>
-<div class="paragraph"><p>This is the root element of an UBER message. Every UBER message MUST have this as it&#8217;s root. The <code>&lt;uber&gt;</code> element has one optional property: <code>version</code> which carries the UBER message version information. For this release, all UBER messages SHOULD be set to the value of "1.0". If the <code>version</code> property is missing, it SHOULD be assumed to be set to "1.0".</p></div>
+<h3 id="_the_span_class_monospaced_lt_uber_gt_span_element">3.6. The <span class="monospaced">&lt;uber&gt;</span> Element</h3>
+<div class="paragraph"><p>This is the root element of an UBER message. Every UBER message MUST have this as it&#8217;s root. The <span class="monospaced">&lt;uber&gt;</span> element has one optional property: <span class="monospaced">version</span> which carries the UBER message version information. For this release, all UBER messages SHOULD be set to the value of "1.0". If the <span class="monospaced">version</span> property is missing, it SHOULD be assumed to be set to "1.0".</p></div>
 <div class="listingblock">
-<div class="title">Example <code>&lt;uber&gt;</code> Elements</div>
-<div class="content">
-<pre><code>&lt;!-- XML format --&gt;
+<div class="title">Example <span class="monospaced">&lt;uber&gt;</span> Elements</div>
+<div class="content monospaced">
+<pre>&lt;!-- XML format --&gt;
 &lt;uber version="1.0"&gt;
 ...
 &lt;/uber&gt;
 
 // JSON format
-{"uber" : {"version" : "1.0", ...} }</code></pre>
+{"uber" : {"version" : "1.0", ...} }</pre>
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="_the_code_lt_data_gt_code_element">3.7. The <code>&lt;data&gt;</code> Element</h3>
-<div class="paragraph"><p>The <code>&lt;data&gt;</code> element is the key element in the model. A valid UBER message SHOULD contain at least one <code>&lt;data&gt;</code> element. If it does appear, the <code>&lt;data&gt;</code> element appears as a child of the <code>&lt;uber&gt;</code> or <code>&lt;error&gt;</code> elements. The <code>&lt;data&gt;</code> element MAY be nested as many times as needed. The <code>&lt;data&gt;</code> element has the following property (all properties are OPTIONAL):</p></div>
+<h3 id="_the_span_class_monospaced_lt_data_gt_span_element">3.7. The <span class="monospaced">&lt;data&gt;</span> Element</h3>
+<div class="paragraph"><p>The <span class="monospaced">&lt;data&gt;</span> element is the key element in the model. A valid UBER message SHOULD contain at least one <span class="monospaced">&lt;data&gt;</span> element. If it does appear, the <span class="monospaced">&lt;data&gt;</span> element appears as a child of the <span class="monospaced">&lt;uber&gt;</span> or <span class="monospaced">&lt;error&gt;</span> elements. The <span class="monospaced">&lt;data&gt;</span> element MAY be nested as many times as needed. The <span class="monospaced">&lt;data&gt;</span> element has the following property (all properties are OPTIONAL):</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
-<code>id</code>
+<span class="monospaced">id</span>
 </dt>
 <dd>
 <p>
-  The document-wide unique identifier for this element. The value of <code>id</code> must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the <code>id</code> property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of RFC3986 <a href="#rfc3986">[RFC3986]</a>.
+  The document-wide unique identifier for this element. The value of <span class="monospaced">id</span> must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the <span class="monospaced">id</span> property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of RFC3986 <a href="#rfc3986">[RFC3986]</a>.
 </p>
 </dd>
 <dt class="hdlist1">
-<code>name</code>
+<span class="monospaced">name</span>
 </dt>
 <dd>
 <p>
-  A document-wide non-unique identifer for this element. The value of <code>name</code> must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the <code>name</code> property is present it MAY be used as a variable in the UBER <code>model</code> property as described in <a href="#rfc6570">[RFC6570]</a>.
+  A document-wide non-unique identifer for this element. The value of <span class="monospaced">name</span> must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the <span class="monospaced">name</span> property is present it MAY be used as a variable in the UBER <span class="monospaced">model</span> property as described in <a href="#rfc6570">[RFC6570]</a>.
 </p>
 </dd>
 <dt class="hdlist1">
-<code>rel</code>
+<span class="monospaced">rel</span>
 </dt>
 <dd>
 <p>
@@ -1107,7 +391,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </p>
 </dd>
 <dt class="hdlist1">
-<code>url</code>
+<span class="monospaced">url</span>
 </dt>
 <dd>
 <p>
@@ -1115,7 +399,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </p>
 </dd>
 <dt class="hdlist1">
-<code>action</code>
+<span class="monospaced">action</span>
 </dt>
 <dd>
 <p>
@@ -1124,74 +408,74 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 <div class="ulist"><ul>
 <li>
 <p>
-<code>append</code> : An unsafe, non-idempotent request to add a new item (e.g. <code>HTTP.POST</code> <a href="#rfc2616">[RFC2616]</a>)
+<span class="monospaced">append</span> : An unsafe, non-idempotent request to add a new item (e.g. <span class="monospaced">HTTP.POST</span> <a href="#rfc2616">[RFC2616]</a>)
 </p>
 </li>
 <li>
 <p>
-<code>partial</code> : An unsafe, non-idempotent request to modify parts of an existing item (e.g. <code>HTTP.PATCH</code> <a href="#rfc5789">[RFC5789]</a>)
+<span class="monospaced">partial</span> : An unsafe, non-idempotent request to modify parts of an existing item (e.g. <span class="monospaced">HTTP.PATCH</span> <a href="#rfc5789">[RFC5789]</a>)
 </p>
 </li>
 <li>
 <p>
-<code>read</code> : A safe, idempotent request (e.g. <code>HTTP.GET</code> <a href="#rfc2616">[RFC2616]</a>)
+<span class="monospaced">read</span> : A safe, idempotent request (e.g. <span class="monospaced">HTTP.GET</span> <a href="#rfc2616">[RFC2616]</a>)
 </p>
 </li>
 <li>
 <p>
-<code>remove</code> : An unsafe, idempotent request to delete an existing item (e.g. <code>HTTP.DELETE</code> <a href="#rfc2616">[RFC2616]</a>)
+<span class="monospaced">remove</span> : An unsafe, idempotent request to delete an existing item (e.g. <span class="monospaced">HTTP.DELETE</span> <a href="#rfc2616">[RFC2616]</a>)
 </p>
 </li>
 <li>
 <p>
-<code>replace</code> : An unsafe, idempotent request to replace an existing item (e.g. <code>HTTP.PUT</code> <a href="#rfc2616">[RFC2616]</a>)
+<span class="monospaced">replace</span> : An unsafe, idempotent request to replace an existing item (e.g. <span class="monospaced">HTTP.PUT</span> <a href="#rfc2616">[RFC2616]</a>)
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>When the <code>&lt;data&gt;</code> element has a <code>url</code> property but no <code>action</code> property, it SHOULD be assumed the <code>action</code> property is set to <code>read</code>. Any value other than those listed here SHOULD be treated as <code>read</code>.</p></div>
+<div class="paragraph"><p>When the <span class="monospaced">&lt;data&gt;</span> element has a <span class="monospaced">url</span> property but no <span class="monospaced">action</span> property, it SHOULD be assumed the <span class="monospaced">action</span> property is set to <span class="monospaced">read</span>. Any value other than those listed here SHOULD be treated as <span class="monospaced">read</span>.</p></div>
 </dd>
 <dt class="hdlist1">
-<code>transclude</code>
+<span class="monospaced">transclude</span>
 </dt>
 <dd>
 <p>
-  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document (<code>transclude="true"</code>) or treated as a <em>navigation</em> to a new document (<code>transclude="false"</code>). If the property is missing, it SHOULD be assumed to be set to <code>false</code> (e.g. <em>navigation</em>).
+  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document (<span class="monospaced">transclude="true"</span>) or treated as a <em>navigation</em> to a new document (<span class="monospaced">transclude="false"</span>). If the property is missing, it SHOULD be assumed to be set to <span class="monospaced">false</span> (e.g. <em>navigation</em>).
 </p>
 </dd>
 <dt class="hdlist1">
-<code>model</code>
+<span class="monospaced">model</span>
 </dt>
 <dd>
 <p>
-  Contains a RFC6570-compliant <a href="#rfc6570">[RFC6570]</a> string to be used to construct URL query strings or request bodies depending on the value in the <code>action</code> property. Variables in UBER <code>model</code> strings SHOULD be resolved using the values from <code>name</code> properties, but MAY come from any source available to the client application. If the <code>action</code> property is set to <code>read</code> or <code>remove</code> then the <code>model</code> is applied to the query string. If the <code>action</code> value is set to <code>append</code>, <code>partial</code>, or <code>replace</code> then the <code>model</code> is applied to the request body.
+  Contains a RFC6570-compliant <a href="#rfc6570">[RFC6570]</a> string to be used to construct URL query strings or request bodies depending on the value in the <span class="monospaced">action</span> property. Variables in UBER <span class="monospaced">model</span> strings SHOULD be resolved using the values from <span class="monospaced">name</span> properties, but MAY come from any source available to the client application. If the <span class="monospaced">action</span> property is set to <span class="monospaced">read</span> or <span class="monospaced">remove</span> then the <span class="monospaced">model</span> is applied to the query string. If the <span class="monospaced">action</span> value is set to <span class="monospaced">append</span>, <span class="monospaced">partial</span>, or <span class="monospaced">replace</span> then the <span class="monospaced">model</span> is applied to the request body.
 </p>
 </dd>
 <dt class="hdlist1">
-<code>sending</code>
+<span class="monospaced">sending</span>
 </dt>
 <dd>
 <p>
-  Contains one or more media type identifiers for use when sending request bodies. One of the supplied identifiers SHOULD be selected as a guide when formatting the request body. For HTTP implementations, the selected identifier SHOULD be used as the value for the <code>Content-Type</code> header. If this property is missing the setting should be assumed to be <code>application/x-www-form-urlencoded</code> as described in RFC1867 <a href="#rfc1867">[RFC1867]</a>.
-</p>
-<div class="paragraph"><p>In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.</p></div>
-</dd>
-<dt class="hdlist1">
-<code>accepting</code>
-</dt>
-<dd>
-<p>
-  Contains one or more media type identifiers to expect when recieving request bodies. The contents of this property SHOULD indicate the formats in which the server is able to return a response body. For HTTP implementations the contents of this property SHOULD be used as the value for the <code>Accept</code> header. If this property is missing, the setting should be assumed to be set to the same value as that of the currently loaded representation (<code>application/vnd.uber-amundsen+xml</code> or <code>application/vnd.uber-amundsen+json</code>).
+  Contains one or more media type identifiers for use when sending request bodies. One of the supplied identifiers SHOULD be selected as a guide when formatting the request body. For HTTP implementations, the selected identifier SHOULD be used as the value for the <span class="monospaced">Content-Type</span> header. If this property is missing the setting should be assumed to be <span class="monospaced">application/x-www-form-urlencoded</span> as described in RFC1867 <a href="#rfc1867">[RFC1867]</a>.
 </p>
 <div class="paragraph"><p>In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.</p></div>
 </dd>
 <dt class="hdlist1">
-<code>value</code>
+<span class="monospaced">accepting</span>
 </dt>
 <dd>
 <p>
-  In the XML variant of the UBER mesage format, inner text of the <code>&lt;data&gt;</code> element contains the value associated with that element.
+  Contains one or more media type identifiers to expect when recieving request bodies. The contents of this property SHOULD indicate the formats in which the server is able to return a response body. For HTTP implementations the contents of this property SHOULD be used as the value for the <span class="monospaced">Accept</span> header. If this property is missing, the setting should be assumed to be set to the same value as that of the currently loaded representation (<span class="monospaced">application/vnd.uber-amundsen+xml</span> or <span class="monospaced">application/vnd.uber-amundsen+json</span>).
 </p>
-<div class="paragraph"><p>In the JSON variant there is a <code>value</code> property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of RFC4627 <a href="#rfc4627">[RFC4627]</a>):</p></div>
+<div class="paragraph"><p>In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.</p></div>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">value</span>
+</dt>
+<dd>
+<p>
+  In the XML variant of the UBER mesage format, inner text of the <span class="monospaced">&lt;data&gt;</span> element contains the value associated with that element.
+</p>
+<div class="paragraph"><p>In the JSON variant there is a <span class="monospaced">value</span> property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of RFC4627 <a href="#rfc4627">[RFC4627]</a>):</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -1205,27 +489,27 @@ string
 </li>
 <li>
 <p>
-<code>false</code>
+<span class="monospaced">false</span>
 </p>
 </li>
 <li>
 <p>
-<code>true</code>
+<span class="monospaced">true</span>
 </p>
 </li>
 <li>
 <p>
-<code>null</code>
+<span class="monospaced">null</span>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>For both the XML and JSON variants, it is the responsibility of the document author to make sure the contents of the <code>value</code> property are properly escaped as needed (per Section 2.4 of <a href="#REC-XML">[REC-XML]</a> and Section 2.5 of <a href="#rfc4627">[RFC4627]</a>).</p></div>
+<div class="paragraph"><p>For both the XML and JSON variants, it is the responsibility of the document author to make sure the contents of the <span class="monospaced">value</span> property are properly escaped as needed (per Section 2.4 of <a href="#REC-XML">[REC-XML]</a> and Section 2.5 of <a href="#rfc4627">[RFC4627]</a>).</p></div>
 </dd>
 </dl></div>
 <div class="listingblock">
-<div class="title">Example <code>&lt;data&gt;</code> Elements (XML)</div>
-<div class="content">
-<pre><code>&lt;uber version="1.0"&gt;
+<div class="title">Example <span class="monospaced">&lt;data&gt;</span> Elements (XML)</div>
+<div class="content monospaced">
+<pre>&lt;uber version="1.0"&gt;
   &lt;data rel="self" url="http://example.org/" /&gt;
   &lt;data name="list" rel="collection" url="http://example.org/list/"/&gt;
   &lt;data name="search" rel="search collection" url="http://example.org/search" model="{?title}" /&gt;
@@ -1237,12 +521,12 @@ string
     &lt;data name="title"&gt;Paint the fence&lt;/data&gt;
     &lt;data name="dueDate"&gt;2014-06-01&lt;/data&gt;
   &lt;/data&gt;
-&lt;/uber&gt;</code></pre>
+&lt;/uber&gt;</pre>
 </div></div>
 <div class="listingblock">
-<div class="title">Example <code>&lt;data&gt;</code> Elements (JSON)</div>
-<div class="content">
-<pre><code>{
+<div class="title">Example <span class="monospaced">&lt;data&gt;</span> Elements (JSON)</div>
+<div class="content monospaced">
+<pre>{
   "uber" :
   {
     "version" : "1.0",
@@ -1285,26 +569,26 @@ string
       }
     ]
   }
-}</code></pre>
+}</pre>
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="_the_code_lt_error_gt_code_element">3.8. The <code>&lt;error&gt;</code> Element</h3>
-<div class="paragraph"><p>The <code>&lt;error&gt;</code> element contains any error information returned by the server regarding the previous request. The <code>&lt;error&gt;</code> element has no properties. This is an OPTIONAL element. When present, it SHOULD contain one or more <code>&lt;data&gt;</code> child elements. It is the <code>&lt;data&gt;</code> child elements that contains error details.</p></div>
+<h3 id="_the_span_class_monospaced_lt_error_gt_span_element">3.8. The <span class="monospaced">&lt;error&gt;</span> Element</h3>
+<div class="paragraph"><p>The <span class="monospaced">&lt;error&gt;</span> element contains any error information returned by the server regarding the previous request. The <span class="monospaced">&lt;error&gt;</span> element has no properties. This is an OPTIONAL element. When present, it SHOULD contain one or more <span class="monospaced">&lt;data&gt;</span> child elements. It is the <span class="monospaced">&lt;data&gt;</span> child elements that contains error details.</p></div>
 <div class="listingblock">
-<div class="title">Example <code>&lt;error&gt;</code> Element (XML)</div>
-<div class="content">
-<pre><code>&lt;uber version="1.0"&gt;
+<div class="title">Example <span class="monospaced">&lt;error&gt;</span> Element (XML)</div>
+<div class="content monospaced">
+<pre>&lt;uber version="1.0"&gt;
   &lt;error&gt;
     &lt;data name="code"&gt;q1w2e3&lt;/data&gt;
     &lt;data name="dump" url="http://example.org/debug/1" /&gt;
   &lt;/error&gt;
-&lt;/uber&gt;</code></pre>
+&lt;/uber&gt;</pre>
 </div></div>
 <div class="listingblock">
-<div class="title">Example <code>&lt;error&gt;</code> Element (JSON)</div>
-<div class="content">
-<pre><code>{
+<div class="title">Example <span class="monospaced">&lt;error&gt;</span> Element (JSON)</div>
+<div class="content monospaced">
+<pre>{
   "uber" :
   {
     "version" : "1.0",
@@ -1317,7 +601,7 @@ string
       ]
     }
   }
-}</code></pre>
+}</pre>
 </div></div>
 </div>
 </div>
@@ -1330,61 +614,59 @@ string
 <h3 id="_supporting_uber_documents_over_http">4.1. Supporting UBER Documents over HTTP</h3>
 <div class="paragraph"><p>This section decribes the details of implementing UBER support over HTTP.</p></div>
 <div class="sect3">
-<h4 id="_mapping_uber_code_action_code_values_to_http_methods">4.1.1. Mapping UBER <code>action</code> Values to HTTP Methods</h4>
-<div class="paragraph"><p>When implementating support for UBER documents over HTTP one of the key details is to map the value of UBER&#8217;s <code>action</code> property to HTTP methods. Table #1 below provides this mapping:</p></div>
-<div class="tableblock">
-<table rules="rows"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
-<caption class="title">Table 1. Mapping HTTP Methods to UBER <code>action</code> and <code>model</code> Values</caption>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<h4 id="_mapping_uber_span_class_monospaced_action_span_values_to_http_methods">4.1.1. Mapping UBER <span class="monospaced">action</span> Values to HTTP Methods</h4>
+<div class="paragraph"><p>When implementating support for UBER documents over HTTP one of the key details is to map the value of UBER&#8217;s <span class="monospaced">action</span> property to HTTP methods. Table #1 below provides this mapping:</p></div>
+<table class="tableblock frame-all grid-rows"
+style="
+width:100%;
+">
+<caption class="title">Table 1. Mapping HTTP Methods to UBER <span class="monospaced">action</span> and <span class="monospaced">model</span> Values</caption>
+<col style="width:33%;">
+<col style="width:33%;">
+<col style="width:33%;">
 <thead>
 <tr>
-<th align="left" valign="top">UBER Action</th>
-<th align="left" valign="top">HTTP Method</th>
-<th align="left" valign="top">UBER Model Modifies</th>
+<th class="tableblock halign-left valign-top" >UBER Action</th>
+<th class="tableblock halign-left valign-top" >HTTP Method</th>
+<th class="tableblock halign-left valign-top" >UBER Model Modifies</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table"><code>append</code></p></td>
-<td align="left" valign="top"><p class="table">POST</p></td>
-<td align="left" valign="top"><p class="table">Request Body</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">append</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Request Body</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><code>partial</code></p></td>
-<td align="left" valign="top"><p class="table">PATCH</p></td>
-<td align="left" valign="top"><p class="table">Request Body</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">partial</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">PATCH</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Request Body</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><code>read</code></p></td>
-<td align="left" valign="top"><p class="table">GET</p></td>
-<td align="left" valign="top"><p class="table">Query String</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">read</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Query String</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><code>remove</code></p></td>
-<td align="left" valign="top"><p class="table">DELETE</p></td>
-<td align="left" valign="top"><p class="table">Query String</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">remove</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">DELETE</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Query String</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><code>replace</code></p></td>
-<td align="left" valign="top"><p class="table">PUT</p></td>
-<td align="left" valign="top"><p class="table">Request Body</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">replace</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">PUT</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Request Body</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
 <div class="sect3">
-<h4 id="_using_uber_code_model_code_values_to_create_http_query_strings">4.1.2. Using UBER <code>model</code> Values to create HTTP Query Strings</h4>
-<div class="paragraph"><p>When applied to HTTP, any <code>model</code> value associated with a <code>data</code> element with the <code>action</code> property set to <code>read</code> or <code>remove</code> MUST be converted into a valid query string. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:</p></div>
+<h4 id="_using_uber_span_class_monospaced_model_span_values_to_create_http_query_strings">4.1.2. Using UBER <span class="monospaced">model</span> Values to create HTTP Query Strings</h4>
+<div class="paragraph"><p>When applied to HTTP, any <span class="monospaced">model</span> value associated with a <span class="monospaced">data</span> element with the <span class="monospaced">action</span> property set to <span class="monospaced">read</span> or <span class="monospaced">remove</span> MUST be converted into a valid query string. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:</p></div>
 <div class="listingblock">
-<div class="title">Converting an UBER <code>read</code> Action into an HTTP Query String</div>
-<div class="content">
-<pre><code>&lt;!-- Uber snippet --&gt;
+<div class="title">Converting an UBER <span class="monospaced">read</span> Action into an HTTP Query String</div>
+<div class="content monospaced">
+<pre>&lt;!-- Uber snippet --&gt;
 &lt;data name="search"
   rel="search"
   url="http://example.org/search"
@@ -1398,16 +680,16 @@ Assume the values supplied are:
 *** HTTP Request ***
 GET /search/?g=Mike&amp;f=Amundsen&amp;e=mike%40example.org HTTP/1.1
 Host: example.org
-Accept-Type: application/vnd.amundsen-uber+xml</code></pre>
+Accept-Type: application/vnd.amundsen-uber+xml</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="_using_uber_code_model_code_values_to_create_http_request_bodies">4.1.3. Using UBER <code>model</code> Values to create HTTP Request Bodies</h4>
-<div class="paragraph"><p>Any <code>model</code> value associated with a <code>data</code> element with the <code>action</code> property set to <code>append</code>, <code>partial</code>, or <code>replace</code> MUST be convereted into a valid HTTP request body. The follwing example shows how an UBER message snippet is converted into a valid HTTP request body:</p></div>
+<h4 id="_using_uber_span_class_monospaced_model_span_values_to_create_http_request_bodies">4.1.3. Using UBER <span class="monospaced">model</span> Values to create HTTP Request Bodies</h4>
+<div class="paragraph"><p>Any <span class="monospaced">model</span> value associated with a <span class="monospaced">data</span> element with the <span class="monospaced">action</span> property set to <span class="monospaced">append</span>, <span class="monospaced">partial</span>, or <span class="monospaced">replace</span> MUST be convereted into a valid HTTP request body. The follwing example shows how an UBER message snippet is converted into a valid HTTP request body:</p></div>
 <div class="listingblock">
-<div class="title">Converting an UBER <code>append</code> Action into an HTTP Request</div>
-<div class="content">
-<pre><code>&lt;!-- Uber snippet --&gt;
+<div class="title">Converting an UBER <span class="monospaced">append</span> Action into an HTTP Request</div>
+<div class="content monospaced">
+<pre>&lt;!-- Uber snippet --&gt;
 &lt;data name="create"
   rel="http://example.org/rels/create"
   url="http://example.org/people/"
@@ -1427,7 +709,7 @@ Accept-Type: application/vnd.amundsen-uber+xml
 Content-Type: application/x-www-form-urlencoded
 Content-Length: xxx
 
-g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2Favatars%2Fmike.png</code></pre>
+g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2Favatars%2Fmike.png</pre>
 </div></div>
 </div>
 </div>
@@ -1446,8 +728,8 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
 <div class="paragraph"><p>Below is an XML Example of an UBER message.</p></div>
 <div class="listingblock">
 <div class="title">XML Example</div>
-<div class="content">
-<pre><code>&lt;uber version="1.0"&gt;
+<div class="content monospaced">
+<pre>&lt;uber version="1.0"&gt;
   &lt;data rel="self" url="http://example.org/" /&gt;
   &lt;data rel="profile" url="http://example.org/profiles/people-and-places/" /&gt;
 
@@ -1504,7 +786,7 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
     &lt;/data&gt;
   &lt;/data&gt;
 
-&lt;/uber&gt;</code></pre>
+&lt;/uber&gt;</pre>
 </div></div>
 </div>
 <div class="sect2">
@@ -1512,8 +794,8 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
 <div class="paragraph"><p>Below is a JSON Example of an UBER message.</p></div>
 <div class="listingblock">
 <div class="title">UBER JSON Example</div>
-<div class="content">
-<pre><code>{
+<div class="content monospaced">
+<pre>{
   "uber" :
   {
     "version" : "1.0",
@@ -1635,7 +917,7 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
       }
     ]
   }
-}</code></pre>
+}</pre>
 </div></div>
 </div>
 </div>
@@ -1782,10 +1064,10 @@ Irakli Nadareishvili.</p></div>
 </div>
 </div>
 </div>
-<div id="footnotes"><hr /></div>
+<div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-12-29 20:32:44 EST
+Last updated 2015-01-02 22:55:23 EST
 </div>
 </div>
 </body>
