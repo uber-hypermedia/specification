@@ -5,6 +5,6 @@ If you want to contribute to the specification document and properly render HTML
 ### On Mac / OS-X
 
 ```bash
-> brew install asciitext
+> brew install asciidoc
 > brew install source-highlight
 ```
