@@ -268,6 +268,45 @@ Below is a JSON Example of an UBER message.
 include::includes/full-example.js[]
 ----
 
+== Supporting Profiles
+The UBER media-type supports the use of semantic profiles via the `profile' link relation type<<rfc6906,[RFC6906]>> in order to provide additional information about the application-level semantics for the message body. The profile value is a list of one or more IRIs identifying specific constraints or conventions that apply to an UBER document. 
+
+The profile value MUST NOT _change_ the semantics of the resource representation when processed without the profile value. The profile value MAY also be used by clients to express their preferences. Profile IRIs SHOULD be dereferenceable and SHOULD provide additional related semantic information.
+
+Use of profiles is OPTIONAL. Servers MAY ignore this value when sent by the client. Clients MAY ignore this value when sent by the server.
+
+This version of the UBER specification supports three ways to communicate profile information:
+
+ . The +profile+ parameter in the media type identifier
+ . A LINK header with +rel="profile"+
+ . Within the UBER message body as a +data+ element with a +rel+ property value of +"profile"+.
+ 
+Depending on the protocol in use, one or more of these methods MAY be used in the same request. For example, in an HTTP exchange a sender MAY use an `Accept` or `Content-Type` header that contains a profile value _and_ a `Link` header that contains a profile value _and_ a message body that contains a profile value. When this occurs, the recipient SHOULD honor all the profile values received. 
+
+=== Profile Media-Type Parameter
+Profile information can be supplied via the media type profile parameter. Examples of valid profile media-type parameters in HTTP messages are:
+
+----
+ Accept: application/vnd.amundsen.uber+json;profile=http://example.org/profiles/vcard
+ Content-Type: application/vnd.amundsen.uber+xml;profile=http://example.org/profiles/vcard http://schema.org/Person
+----
+
+=== Profile Link Header
+The Link Header<<rfc5988,[RFC5988]>> can also be used to communicate profile details. Examples of valid profile Link headers are:
+
+----
+ Link: <http://example.org/profiles/vcard>; rel="profile"
+ Link: <http://example.org/profiles/vcard>; rel="profile", <http://schema.org/Person>; rel="profile"
+----
+
+=== Profile Link Element
+Profile information can be supplied as one or more +data+ elements withing an UBER message body. Examples of valid profile elements within an UBER document are:
+
+----
+  <data rel="profile" url="http://example.org/profiles/people-and-places/" />  
+  {"data" : [{"rel" : ["profile"], "url" : "http://example.org/profiles/people-and-places"}]}
+----
+
 == Extensibility
 This document describes the UBER message format markup vocabulary. Markup from other vocabularies ("foreign markup") can be used in an UBER document. Any extensions to the UBER Hypermedia vocabulary MUST not redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the UBER vocabulary SHOULD ignore them.
 
@@ -307,6 +346,7 @@ Below are the references used in this document.
  * [[rfc5789]] [RFC5789] Dusseault, L., Snell, J., "PATCH Method for HTTP", March 2010, https://tools.ietf.org/html/rfc5789
  * [[rfc5988]] [RFC5988] Nottingham, M., "Web Linking", October 2010, http://tools.ietf.org/html/rfc5988
  * [[rfc6570]] [RFC6570] Gregorio, J., Fielding, R., Hadley, M., Nottingham, M., Orchard, D., "URI Template", March 2012, http://tools.ietf.org/html/rfc6570
+ * [[rfc6906]] [RFC6906] Wilde, E., "The `profile' Link Relation Type", March 2013, https://tools.ietf.org/html/rfc6906
  * [[REC-XML]] [REC-XML] Bray, T., Paoli, J., Sperberg-McQueen, C., Maler, E., Yergeau, F., "Extensible Markup Language (XML) 1.0 (Fifth Edition)", November 2008, http://www.w3.org/TR/REC-xml/
 
 === Informative References
