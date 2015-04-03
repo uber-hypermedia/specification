@@ -74,7 +74,7 @@ There are eleven properties in the UBER design:
 +action+::
   The network request verb associated with this element.
 +transclude+::
-  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document
+  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document. If no +transclude+ property exists, then the value of +transclude+ SHOULD be assumed to be +false+ (e.g. as a _navigation_). Any unsupported or unknown +transclude+ value MUST be treated as a _navigation_.
 +model+::
   Contains a template to be used to construct URL query strings or request bodies depending on the value in the +action+ property.
 +sending+::
@@ -98,7 +98,11 @@ Reserved strings for the +action+ property::
 
 Reserved strings for the +transclude+ property::
   * +true+ : embed the results of the request into the current document
-  * +false+ : treat the associated +url+ value as a 'navigation' to a new document.
+  * +false+ : treat the associated +url+ value as a 'navigation' to a new document. [*DEFAULT*]
+  * +audio+ : treat the associated +url+ value as an _embedded_ audio resource.
+  * +image+ : treat the associated +url+ value as an _embedded_ image resource.
+  * +text+ : treat the associated +url+ value as an _embedded_ text resource (e.g. HTML.IFRAME).
+  * +video+ : treat the associated +url+ value as an _embedded_ video resource.
 
 === Link Relation Values
 There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in RFC5988 <<rfc5988, [RFC5988]>> and from shared public sources such as:
