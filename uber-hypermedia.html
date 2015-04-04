@@ -51,7 +51,7 @@ Last Updated
 </dt>
 <dd>
 <p>
-  2015-04-03
+  2015-04-04
 </p>
 </dd>
 <dt class="hdlist1">
@@ -206,7 +206,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </dt>
 <dd>
 <p>
-  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document
+  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document. If no <span class="monospaced">transclude</span> property exists, then the value of <span class="monospaced">transclude</span> SHOULD be assumed to be <span class="monospaced">false</span> (e.g. as a <em>navigation</em>). Any unsupported or unknown <span class="monospaced">transclude</span> value MUST be treated as a <em>navigation</em>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -299,7 +299,27 @@ Reserved strings for the <span class="monospaced">transclude</span> property
 </li>
 <li>
 <p>
-<span class="monospaced">false</span> : treat the associated <span class="monospaced">url</span> value as a <em>navigation</em> to a new document.
+<span class="monospaced">false</span> : treat the associated <span class="monospaced">url</span> value as a <em>navigation</em> to a new document. [<strong>DEFAULT</strong>]
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">audio</span> : treat the associated <span class="monospaced">url</span> value as an <em>embedded</em> audio resource.
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">image</span> : treat the associated <span class="monospaced">url</span> value as an <em>embedded</em> image resource.
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">text</span> : treat the associated <span class="monospaced">url</span> value as an <em>embedded</em> text resource (e.g. HTML.IFRAME).
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">video</span> : treat the associated <span class="monospaced">url</span> value as an <em>embedded</em> video resource.
 </p>
 </li>
 </ul></div>
@@ -1126,7 +1146,7 @@ Irakli Nadareishvili.</p></div>
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-03 17:53:11 EDT
+Last updated 2015-04-04 08:45:12 EDT
 </div>
 </div>
 </body>
