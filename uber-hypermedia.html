@@ -409,6 +409,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 <p>
   Contains a list of link relation values. These values SHOULD conform to the guidance provided in RFC5988 <a href="#rfc5988">[RFC5988]</a>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
 </p>
+<div class="paragraph"><p>In UBER documents, the <span class="monospaced">rel</span> property is used to supply domain-related semantic information for the associated <span class="monospaced">data</span> element. This applies equally to <span class="monospaced">data</span> elements used as hypermedia links (e.g. those with a valid <span class="monospaced">url</span> property) and <span class="monospaced">data</span> elements used to carry simple values (e.g. strings and numbers).</p></div>
 </dd>
 <dt class="hdlist1">
 <span class="monospaced">url</span>
@@ -599,9 +600,22 @@ string
 <div class="title">Example <span class="monospaced">&lt;error&gt;</span> Element (XML)</div>
 <div class="content monospaced">
 <pre>&lt;uber version="1.0"&gt;
-  &lt;error&gt;
-    &lt;data name="code"&gt;q1w2e3&lt;/data&gt;
-    &lt;data name="dump" url="http://example.org/debug/1" /&gt;
+  &lt;error rel="https://tools.ietf.org/html/http-problem-00"&gt;
+    &lt;data name="type"
+      rel="https://tools.ietf.org/html/http-problem-00#type"&gt;
+      out-of-credit
+    &lt;/data&gt;
+    &lt;data name="title"
+      rel="https://tools.ietf.org/html/http-problem-00#title"&gt;
+      You do not have enough credit
+    &lt;/data&gt;
+    &lt;data name="detail"
+      rel="https://tools.ietf.org/html/http-problem-00#detail"&gt;
+      Your current balance is 30, but the cost is 50
+    &lt;/data&gt;
+    &lt;data name="balance"
+      rel="https://tools.ietf.org/html/http-problem-00#balance"&gt;
+    &lt;/data&gt;
   &lt;/error&gt;
 &lt;/uber&gt;</pre>
 </div></div>
@@ -609,18 +623,37 @@ string
 <div class="title">Example <span class="monospaced">&lt;error&gt;</span> Element (JSON)</div>
 <div class="content monospaced">
 <pre>{
-  "uber" :
+ "uber" :
+ {
+  "version" : "1.0",
+  "error" :
   {
-    "version" : "1.0",
-    "error" :
+   "rel" : "[https://tools.ietf.org/html/http-problem-00]",
+   "data" :
+   [
     {
-      "data" :
-      [
-        {"name" : "code", "value" : "q1w2e3"},
-        {"name" : "dump", "url" : "http://example.org/debug/1"}
-      ]
+     "name" : "type",
+     "rel" : "[https://tools.ietf.org/html/http-problem-00#type]",
+     "value" : "out-of-credit"
+    },
+    {
+     "name" : "title",
+     "rel" : "[https://tools.ietf.org/html/http-problem-00#title]",
+     "value" : "You do not have enough credit"
+    },
+    {
+     "name" : "detail",
+     "rel" : "[https://tools.ietf.org/html/http-problem-00#detail]",
+     "value" : "Your balance is 30, but the cost is 50."
+    },
+    {
+     "name" : "balance",
+     "rel" : "[https://tools.ietf.org/html/http-problem-00#balance]",
+     "value" : "30"
     }
+   ]
   }
+ }
 }</pre>
 </div></div>
 </div>
@@ -1146,7 +1179,7 @@ Irakli Nadareishvili.</p></div>
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-04 08:45:12 EDT
+Last updated 2015-04-04 16:52:12 EDT
 </div>
 </div>
 </body>

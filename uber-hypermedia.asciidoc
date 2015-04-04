@@ -144,6 +144,8 @@ The +<data>+ element is the key element in the model. A valid UBER message SHOUL
 
 +rel+::
   Contains a list of link relation values. These values SHOULD conform to the guidance provided in RFC5988 <<rfc5988, [RFC5988]>>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
++
+In UBER documents, the +rel+ property is used to supply domain-related semantic information for the associated +data+ element. This applies equally to +data+ elements used as hypermedia links (e.g. those with a valid +url+ property) and +data+ elements used to carry simple values (e.g. strings and numbers). 
 
 +url+::
   A resolvable URL associated with this element. The value SHOULD conform to that described in RFC3986 <<rfc3986,[RFC3986]>>.

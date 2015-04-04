@@ -1,7 +1,20 @@
 <uber version="1.0">
-  <error>
-    <data name="code">q1w2e3</data>
-    <data name="dump" url="http://example.org/debug/1" />
+  <error rel="https://tools.ietf.org/html/http-problem-00">
+    <data name="type" 
+      rel="https://tools.ietf.org/html/http-problem-00#type">
+      out-of-credit
+    </data>
+    <data name="title"
+      rel="https://tools.ietf.org/html/http-problem-00#title">
+      You do not have enough credit
+    </data>
+    <data name="detail"
+      rel="https://tools.ietf.org/html/http-problem-00#detail">
+      Your current balance is 30, but the cost is 50
+    </data>
+    <data name="balance"
+      rel="https://tools.ietf.org/html/http-problem-00#balance">
+    </data>  
   </error>
 </uber>
 
