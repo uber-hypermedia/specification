@@ -51,7 +51,7 @@ Last Updated
 </dt>
 <dd>
 <p>
-  2015-04-03
+  2015-04-04
 </p>
 </dd>
 <dt class="hdlist1">
@@ -943,7 +943,61 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
 </div>
 </div>
 <div class="sect1">
-<h2 id="_extensibility">6. Extensibility</h2>
+<h2 id="_supporting_profiles">6. Supporting Profiles</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The UBER media-type supports the use of semantic profiles via the &#8216;profile&#8217; link relation type<a href="#rfc6906">[RFC6906]</a> in order to provide additional information about the application-level semantics for the message body. The profile value is a list of one or more IRIs identifying specific constraints or conventions that apply to an UBER document.</p></div>
+<div class="paragraph"><p>The profile value MUST NOT <em>change</em> the semantics of the resource representation when processed without the profile value. The profile value MAY also be used by clients to express their preferences. Profile IRIs SHOULD be dereferenceable and SHOULD provide additional related semantic information.</p></div>
+<div class="paragraph"><p>Use of profiles is OPTIONAL. Servers MAY ignore this value when sent by the client. Clients MAY ignore this value when sent by the server.</p></div>
+<div class="paragraph"><p>This version of the UBER specification supports three ways to communicate profile information:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+The <span class="monospaced">profile</span> parameter in the media type identifier
+</p>
+</li>
+<li>
+<p>
+A LINK header with <span class="monospaced">rel="profile"</span>
+</p>
+</li>
+<li>
+<p>
+Within the UBER message body as a <span class="monospaced">data</span> element with a <span class="monospaced">rel</span> property value of <span class="monospaced">"profile"</span>.
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>Depending on the protocol in use, one or more of these methods MAY be used in the same request. For example, in an HTTP exchange a sender MAY use an <span class="monospaced">Accept</span> or <span class="monospaced">Content-Type</span> header that contains a profile value <em>and</em> a <span class="monospaced">Link</span> header that contains a profile value <em>and</em> a message body that contains a profile value. When this occurs, the recipient SHOULD honor all the profile values received.</p></div>
+<div class="sect2">
+<h3 id="_profile_media_type_parameter">6.1. Profile Media-Type Parameter</h3>
+<div class="paragraph"><p>Profile information can be supplied via the media type profile parameter. Examples of valid profile media-type parameters in HTTP messages are:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre> Accept: application/vnd.amundsen.uber+json;profile=http://example.org/profiles/vcard
+ Content-Type: application/vnd.amundsen.uber+xml;profile=http://example.org/profiles/vcard http://schema.org/Person</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_profile_link_header">6.2. Profile Link Header</h3>
+<div class="paragraph"><p>The Link Header<a href="#rfc5988">[RFC5988]</a> can also be used to communicate profile details. Examples of valid profile Link headers are:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre> Link: &lt;http://example.org/profiles/vcard&gt;; rel="profile"
+ Link: &lt;http://example.org/profiles/vcard&gt;; rel="profile", &lt;http://schema.org/Person&gt;; rel="profile"</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_profile_link_element">6.3. Profile Link Element</h3>
+<div class="paragraph"><p>Profile information can be supplied as one or more <span class="monospaced">data</span> elements withing an UBER message body. Examples of valid profile elements within an UBER document are:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>  &lt;data rel="profile" url="http://example.org/profiles/people-and-places/" /&gt;
+  {"data" : [{"rel" : ["profile"], "url" : "http://example.org/profiles/people-and-places"}]}</pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_extensibility">7. Extensibility</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>This document describes the UBER message format markup vocabulary. Markup from other vocabularies ("foreign markup") can be used in an UBER document. Any extensions to the UBER Hypermedia vocabulary MUST not redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the UBER vocabulary SHOULD ignore them.</p></div>
 <div class="paragraph"><p>The details of designing and implementing UBER extensions is beyond the scope of this document.</p></div>
@@ -960,34 +1014,34 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
 </div>
 </div>
 <div class="sect1">
-<h2 id="_iana_considerations">7. IANA Considerations</h2>
+<h2 id="_iana_considerations">8. IANA Considerations</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Below are the related IANA considerations for this media type design.</p></div>
 <div class="sect2">
-<h3 id="_xml_media_type_registration">7.1. XML Media Type Registration</h3>
+<h3 id="_xml_media_type_registration">8.1. XML Media Type Registration</h3>
 <div class="paragraph"><p>[pending submission]</p></div>
 </div>
 <div class="sect2">
-<h3 id="_json_media_type_registration">7.2. JSON Media Type Registration</h3>
+<h3 id="_json_media_type_registration">8.2. JSON Media Type Registration</h3>
 <div class="paragraph"><p>[pending submission]</p></div>
 </div>
 <div class="sect2">
-<h3 id="_security_considerations">7.3. Security Considerations</h3>
+<h3 id="_security_considerations">8.3. Security Considerations</h3>
 <div class="paragraph"><p>The XML variant of the UBER message format shares security issues common to all XML content types. It does not provide executable content. Information contained in UBER documents do not require privacy or integrity services.</p></div>
 <div class="paragraph"><p>The JSON variant of the UBER message format shares security issues common to all JSON content types. See RFC4627 Section #6 <a href="#rfc4627">[RFC4627]</a> for additional information. The UBER message format does not provide executable content. Information contained in UBER documents do not require privacy or integrity services.</p></div>
 </div>
 <div class="sect2">
-<h3 id="_internationalization_considerations">7.4. Internationalization Considerations</h3>
+<h3 id="_internationalization_considerations">8.4. Internationalization Considerations</h3>
 <div class="paragraph"><p>The UBER message format does not have any internationalization considerations other than those which are discussed in referenced RFC documents (see below).</p></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_references">8. References</h2>
+<h2 id="_references">9. References</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Below are the references used in this document.</p></div>
 <div class="sect2">
-<h3 id="_normative_references">8.1. Normative References</h3>
+<h3 id="_normative_references">9.1. Normative References</h3>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -1031,13 +1085,18 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
 </li>
 <li>
 <p>
+<a id="rfc6906"></a> [RFC6906] Wilde, E., "The &#8216;profile&#8217; Link Relation Type", March 2013, <a href="https://tools.ietf.org/html/rfc6906">https://tools.ietf.org/html/rfc6906</a>
+</p>
+</li>
+<li>
+<p>
 <a id="REC-XML"></a> [REC-XML] Bray, T., Paoli, J., Sperberg-McQueen, C., Maler, E., Yergeau, F., "Extensible Markup Language (XML) 1.0 (Fifth Edition)", November 2008, <a href="http://www.w3.org/TR/REC-xml/">http://www.w3.org/TR/REC-xml/</a>
 </p>
 </li>
 </ul></div>
 </div>
 <div class="sect2">
-<h3 id="_informative_references">8.2. Informative References</h3>
+<h3 id="_informative_references">9.2. Informative References</h3>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -1069,7 +1128,7 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
 </div>
 </div>
 <div class="sect1">
-<h2 id="_acknowledgements">9. Acknowledgements</h2>
+<h2 id="_acknowledgements">10. Acknowledgements</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The author would like to thank everyone who commented upon,
 encouraged, and gave feedback to this specification,
@@ -1087,7 +1146,7 @@ Irakli Nadareishvili.</p></div>
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-03 16:50:47 EDT
+Last updated 2015-04-04 08:45:12 EDT
 </div>
 </div>
 </body>
