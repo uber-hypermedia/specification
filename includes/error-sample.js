@@ -1,15 +1,33 @@
 {
-  "uber" :
+ "uber" :
+ {
+  "version" : "1.0",
+  "error" : 
   {
-    "version" : "1.0",
-    "error" : 
+   "data" : 
+   [
     {
-      "data" : 
-      [
-        {"name" : "code", "value" : "q1w2e3"},
-        {"name" : "dump", "url" : "http://example.org/debug/1"}
-      ]
+     "name" : "type", 
+     "rel" : ["https://example.com/rels/http-problem#type"],
+     "value" : "out-of-credit"
+    },
+    {
+     "name" : "title", 
+     "rel" : ["https://example.com/rels/http-problem#title"],
+     "value" : "You do not have enough credit"
+    },
+    {
+     "name" : "detail", 
+     "rel" : ["https://example.com/rels/http-problem#detail"],
+     "value" : "Your balance is 30, but the cost is 50."
+    },
+    {
+     "name" : "balance", 
+     "rel" : ["https://example.com/rels/http-problem#balance"],
+     "value" : "30"
     }
+   ]
   }
+ }
 }
 
