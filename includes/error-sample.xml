@@ -1,5 +1,5 @@
 <uber version="1.0">
-  <error rel="https://example.com/rels/http-problem">
+  <error>
     <data name="type" 
       rel="https://example.com/rels/http-problem#type">
       out-of-credit
