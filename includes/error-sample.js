@@ -4,7 +4,6 @@
   "version" : "1.0",
   "error" : 
   {
-   "rel" : ["https://example.com/rels/http-problem"],
    "data" : 
    [
     {
