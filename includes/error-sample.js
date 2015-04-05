@@ -4,27 +4,27 @@
   "version" : "1.0",
   "error" : 
   {
-   "rel" : ["https://tools.ietf.org/html/http-problem-00"],
+   "rel" : ["https://example.com/rels/http-problem"],
    "data" : 
    [
     {
      "name" : "type", 
-     "rel" : ["https://tools.ietf.org/html/http-problem-00#type"],
+     "rel" : ["https://example.com/rels/http-problem#type"],
      "value" : "out-of-credit"
     },
     {
      "name" : "title", 
-     "rel" : ["https://tools.ietf.org/html/http-problem-00#title"],
+     "rel" : ["https://example.com/rels/http-problem#title"],
      "value" : "You do not have enough credit"
     },
     {
      "name" : "detail", 
-     "rel" : ["https://tools.ietf.org/html/http-problem-00#detail"],
+     "rel" : ["https://example.com/rels/http-problem#detail"],
      "value" : "Your balance is 30, but the cost is 50."
     },
     {
      "name" : "balance", 
-     "rel" : ["https://tools.ietf.org/html/http-problem-00#balance"],
+     "rel" : ["https://example.com/rels/http-problem#balance"],
      "value" : "30"
     }
    ]
