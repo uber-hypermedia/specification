@@ -600,21 +600,21 @@ string
 <div class="title">Example <span class="monospaced">&lt;error&gt;</span> Element (XML)</div>
 <div class="content monospaced">
 <pre>&lt;uber version="1.0"&gt;
-  &lt;error rel="https://tools.ietf.org/html/http-problem-00"&gt;
+  &lt;error rel="https://example.com/rels/http-problem"&gt;
     &lt;data name="type"
-      rel="https://tools.ietf.org/html/http-problem-00#type"&gt;
+      rel="https://example.com/rels/http-problem#type"&gt;
       out-of-credit
     &lt;/data&gt;
     &lt;data name="title"
-      rel="https://tools.ietf.org/html/http-problem-00#title"&gt;
+      rel="https://example.com/rels/http-problem#title"&gt;
       You do not have enough credit
     &lt;/data&gt;
     &lt;data name="detail"
-      rel="https://tools.ietf.org/html/http-problem-00#detail"&gt;
+      rel="https://example.com/rels/http-problem#detail"&gt;
       Your current balance is 30, but the cost is 50
     &lt;/data&gt;
     &lt;data name="balance"
-      rel="https://tools.ietf.org/html/http-problem-00#balance"&gt;
+      rel="https://example.com/rels/http-problem#balance"&gt;
     &lt;/data&gt;
   &lt;/error&gt;
 &lt;/uber&gt;</pre>
@@ -628,27 +628,27 @@ string
   "version" : "1.0",
   "error" :
   {
-   "rel" : ["https://tools.ietf.org/html/http-problem-00"],
+   "rel" : ["https://example.com/rels/http-problem"],
    "data" :
    [
     {
      "name" : "type",
-     "rel" : ["https://tools.ietf.org/html/http-problem-00#type"],
+     "rel" : ["https://example.com/rels/http-problem#type"],
      "value" : "out-of-credit"
     },
     {
      "name" : "title",
-     "rel" : ["https://tools.ietf.org/html/http-problem-00#title"],
+     "rel" : ["https://example.com/rels/http-problem#title"],
      "value" : "You do not have enough credit"
     },
     {
      "name" : "detail",
-     "rel" : ["https://tools.ietf.org/html/http-problem-00#detail"],
+     "rel" : ["https://example.com/rels/http-problem#detail"],
      "value" : "Your balance is 30, but the cost is 50."
     },
     {
      "name" : "balance",
-     "rel" : ["https://tools.ietf.org/html/http-problem-00#balance"],
+     "rel" : ["https://example.com/rels/http-problem#balance"],
      "value" : "30"
     }
    ]
