@@ -22,8 +22,8 @@
           {
             "name" : "search",
             "rel" : ["search","collection"],
-            "url" : "http://example.org/people/search",
-            "model" : "?g={givenName}&f={familyName}&e={email}"
+            "url" : "http://example.org/people/search?g={givenName}&f={familyName}&e={email}",
+            "templated" : "true"
           },
           {
             "name" : "person",
@@ -69,8 +69,8 @@
           {
             "name" : "search",
             "rel" : ["search","collection"],
-            "url" : "http://example.org/places/search",
-            "model" : "?r={addressRegion}&l={addressLocality}&p={postalCode}"
+            "url" : "http://example.org/places/search?r={addressRegion}&l={addressLocality}&p={postalCode}",
+            "templated" : "true"
           },
           {
             "name" : "place",

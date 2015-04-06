@@ -126,10 +126,10 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 <div class="sect1">
 <h2 id="_the_uber_message_model">3. The UBER Message Model</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>The UBER message model is very minimal. There are three elements, eleven possible properties, and seven reserved string values.</p></div>
+<div class="paragraph"><p>The UBER message model is very minimal. The list of elements, properties, and reserved values is rather small in order to keep the process of describing and processing messages as lightweight as possible.</p></div>
 <div class="sect2">
 <h3 id="_elements">3.1. Elements</h3>
-<div class="paragraph"><p>There are only three elements in the UBER message model:</p></div>
+<div class="paragraph"><p>Below is the list of all possible elements in an UBER message:</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
 <span class="monospaced">&lt;uber&gt;</span>
@@ -159,7 +159,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </div>
 <div class="sect2">
 <h3 id="_properties">3.2. Properties</h3>
-<div class="paragraph"><p>There are eleven properties in the UBER design:</p></div>
+<div class="paragraph"><p>Below is a list of all the possible properties in an UBER message:</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
 <span class="monospaced">id</span>
@@ -190,7 +190,15 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </dt>
 <dd>
 <p>
-  A resolvable URL associated with this element.
+  A resolvable URL associated with this element. The value MAY be a URL Template.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">templated</span>
+</dt>
+<dd>
+<p>
+  If set to <span class="monospaced">true</span> the value of the <span class="monospaced">url</span> property contains a URI Template. The default value is <span class="monospaced">false</span>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -206,7 +214,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </dt>
 <dd>
 <p>
-  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document. If no <span class="monospaced">transclude</span> property exists, then the value of <span class="monospaced">transclude</span> SHOULD be assumed to be <span class="monospaced">false</span> (e.g. as a <em>navigation</em>). Any unsupported or unknown <span class="monospaced">transclude</span> value MUST be treated as a <em>navigation</em>.
+  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -214,7 +222,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </dt>
 <dd>
 <p>
-  Contains a template to be used to construct URL query strings or request bodies depending on the value in the <span class="monospaced">action</span> property.
+  Contains a template to be used to construct message bodies.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -253,7 +261,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </div>
 <div class="sect2">
 <h3 id="_reserved_strings">3.3. Reserved Strings</h3>
-<div class="paragraph"><p>There are seven reserved strings used as possible values for UBER properties.</p></div>
+<div class="paragraph"><p>Below is the list of reserved strings used as possible values for UBER properties.</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
 Reserved strings for the <span class="monospaced">action</span> property
@@ -328,7 +336,7 @@ Reserved strings for the <span class="monospaced">transclude</span> property
 </div>
 <div class="sect2">
 <h3 id="_link_relation_values">3.4. Link Relation Values</h3>
-<div class="paragraph"><p>There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in RFC5988 <a href="#rfc5988">[RFC5988]</a> and from shared public sources such as:</p></div>
+<div class="paragraph"><p>There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in RFC5988 <a href="#rfc5988">[RFC5988]</a> and from shared public sources such as (but not limited to):</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -354,13 +362,13 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 <div class="title">UBER Message Model (XML)</div>
 <div class="content monospaced">
 <pre>&lt;uber @version&gt;
-  &lt;data @id @name @rel @url @action @transclude @model @sending @accepting&gt;
+  &lt;data @id @name @rel @url @templated @action @transclude @model @sending @accepting&gt;
     &lt;data ... &gt;
        &lt;data ... /&gt;
     &lt;/data&gt;
   &lt;/data&gt;
   &lt;error&gt;
-    &lt;data @id @name @rel @url @action @transclude @model @sending @accepting&gt;
+    &lt;data @id @name @rel @url @templated @action @transclude @model @sending @accepting&gt;
        &lt;data ... /&gt;
     &lt;/data&gt;
   &lt;/error&gt;
@@ -384,7 +392,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </div>
 <div class="sect2">
 <h3 id="_the_span_class_monospaced_lt_data_gt_span_element">3.7. The <span class="monospaced">&lt;data&gt;</span> Element</h3>
-<div class="paragraph"><p>The <span class="monospaced">&lt;data&gt;</span> element is the key element in the model. A valid UBER message SHOULD contain at least one <span class="monospaced">&lt;data&gt;</span> element. If it does appear, the <span class="monospaced">&lt;data&gt;</span> element appears as a child of the <span class="monospaced">&lt;uber&gt;</span> or <span class="monospaced">&lt;error&gt;</span> elements. The <span class="monospaced">&lt;data&gt;</span> element MAY be nested as many times as needed. The <span class="monospaced">&lt;data&gt;</span> element has the following property (all properties are OPTIONAL):</p></div>
+<div class="paragraph"><p>The <span class="monospaced">&lt;data&gt;</span> element is the key element in the model. A valid UBER message SHOULD contain at least one <span class="monospaced">&lt;data&gt;</span> element. If it does appear, the <span class="monospaced">&lt;data&gt;</span> element appears as a child of the <span class="monospaced">&lt;uber&gt;</span> or <span class="monospaced">&lt;error&gt;</span> elements. The <span class="monospaced">&lt;data&gt;</span> element MAY be nested as many times as needed. The <span class="monospaced">&lt;data&gt;</span> element has the following properties (all properties are OPTIONAL):</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
 <span class="monospaced">id</span>
@@ -416,7 +424,15 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </dt>
 <dd>
 <p>
-  A resolvable URL associated with this element. The value SHOULD conform to that described in RFC3986 <a href="#rfc3986">[RFC3986]</a>.
+  A resolvable URL associated with this element. If the <span class="monospaced">templated</span> property is set to <span class="monospaced">true</span>, the value of the <span class="monospaced">url</span> property SHOULD be treated as a URI Template per <a href="#rfc6570">[RFC6570]</a>. If the <span class="monospaced">templated</span> property is set of <span class="monospaced">false</span>, contains an unknown value, or is missing, the value of the <span class="monospaced">url</span> property SHOULD be treated as a URL per RFC3986 <a href="#rfc3986">[RFC3986]</a>.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">templated</span>
+</dt>
+<dd>
+<p>
+  If set to <span class="monospaced">true</span> the value of the <span class="monospaced">url</span> property SHOULD be treated as a URI Template per <a href="#rfc6570">[RFC6570]</a>. The default value is <span class="monospaced">false</span>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -460,7 +476,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </dt>
 <dd>
 <p>
-  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document (<span class="monospaced">transclude="true"</span>) or treated as a <em>navigation</em> to a new document (<span class="monospaced">transclude="false"</span>). If the property is missing, it SHOULD be assumed to be set to <span class="monospaced">false</span> (e.g. <em>navigation</em>).
+  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document (<span class="monospaced">transclude="true"</span>) or treated as a <em>navigation</em> to a new document (<span class="monospaced">transclude="false"</span>). If no <span class="monospaced">transclude</span> property exists, then the value of <span class="monospaced">transclude</span> SHOULD be assumed to be <span class="monospaced">false</span> (e.g. as a <em>navigation</em>). Any unsupported or unknown <span class="monospaced">transclude</span> value MUST be treated as a <em>navigation</em>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -468,7 +484,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </dt>
 <dd>
 <p>
-  Contains a RFC6570-compliant <a href="#rfc6570">[RFC6570]</a> string to be used to construct URL query strings or request bodies depending on the value in the <span class="monospaced">action</span> property. Variables in UBER <span class="monospaced">model</span> strings SHOULD be resolved using the values from <span class="monospaced">name</span> properties, but MAY come from any source available to the client application. If the <span class="monospaced">action</span> property is set to <span class="monospaced">read</span> or <span class="monospaced">remove</span> then the <span class="monospaced">model</span> is applied to the query string. If the <span class="monospaced">action</span> value is set to <span class="monospaced">append</span>, <span class="monospaced">partial</span>, or <span class="monospaced">replace</span> then the <span class="monospaced">model</span> is applied to the request body.
+  Contains a RFC6570-compliant <a href="#rfc6570">[RFC6570]</a> string to be used to construct message bodies. Variables in UBER <span class="monospaced">model</span> strings SHOULD be resolved using the values from <span class="monospaced">name</span> properties, but MAY come from any source available to the client application.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -533,7 +549,7 @@ string
 <pre>&lt;uber version="1.0"&gt;
   &lt;data rel="self" url="http://example.org/" /&gt;
   &lt;data name="list" rel="collection" url="http://example.org/list/"/&gt;
-  &lt;data name="search" rel="search collection" url="http://example.org/search" model="{?title}" /&gt;
+  &lt;data name="search" rel="search collection" url="http://example.org/search?{title}" templated="true" /&gt;
   &lt;data name="todo" rel="item http://example.org/rels/todo" url="http://example.org/list/1"&gt;
     &lt;data name="title"&gt;Clean House&lt;/data&gt;
     &lt;data name="dueDate"&gt;2014-05-01&lt;/data&gt;
@@ -565,8 +581,8 @@ string
       {
         "name" : "search",
         "rel" : ["search","collection"],
-        "url" : "http://example.org/search",
-        "model" : "{?title}"
+        "url" : "http://example.org/search?{title}",
+        "templated" : "true"
       },
       {
         "name" : "todo",
@@ -673,56 +689,51 @@ style="
 width:100%;
 ">
 <caption class="title">Table 1. Mapping HTTP Methods to UBER <span class="monospaced">action</span> and <span class="monospaced">model</span> Values</caption>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;">
+<col style="width:50%;">
+<col style="width:50%;">
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top" >UBER Action</th>
 <th class="tableblock halign-left valign-top" >HTTP Method</th>
-<th class="tableblock halign-left valign-top" >UBER Model Modifies</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">append</span></p></td>
 <td class="tableblock halign-left valign-top" ><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top" ><p class="tableblock">Request Body</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">partial</span></p></td>
 <td class="tableblock halign-left valign-top" ><p class="tableblock">PATCH</p></td>
-<td class="tableblock halign-left valign-top" ><p class="tableblock">Request Body</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">read</span></p></td>
 <td class="tableblock halign-left valign-top" ><p class="tableblock">GET</p></td>
-<td class="tableblock halign-left valign-top" ><p class="tableblock">Query String</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">remove</span></p></td>
 <td class="tableblock halign-left valign-top" ><p class="tableblock">DELETE</p></td>
-<td class="tableblock halign-left valign-top" ><p class="tableblock">Query String</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">replace</span></p></td>
 <td class="tableblock halign-left valign-top" ><p class="tableblock">PUT</p></td>
-<td class="tableblock halign-left valign-top" ><p class="tableblock">Request Body</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_using_uber_span_class_monospaced_model_span_values_to_create_http_query_strings">4.1.2. Using UBER <span class="monospaced">model</span> Values to create HTTP Query Strings</h4>
-<div class="paragraph"><p>When applied to HTTP, any <span class="monospaced">model</span> value associated with a <span class="monospaced">data</span> element with the <span class="monospaced">action</span> property set to <span class="monospaced">read</span> or <span class="monospaced">remove</span> MUST be converted into a valid query string. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:</p></div>
+<h4 id="_using_uber_span_class_monospaced_url_span_values_to_create_http_query_strings">4.1.2. Using UBER <span class="monospaced">url</span> Values to create HTTP Query Strings</h4>
+<div class="paragraph"><p>If the <span class="monospaced">templated</span> property of a <span class="monospaced">data</span> element is set to <span class="monospaced">true</span> the <span class="monospaced">url</span> property SHOULD be treated as a URI Template per<a href="#rfc6570">[RFC6570]</a>. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:</p></div>
 <div class="listingblock">
 <div class="title">Converting an UBER <span class="monospaced">read</span> Action into an HTTP Query String</div>
 <div class="content monospaced">
 <pre>&lt;!-- Uber snippet --&gt;
 &lt;data name="search"
   rel="search"
-  url="http://example.org/search"
-  model="?g={givenName}&amp;f={familyName}&amp;e={email}" /&gt;
+  templated="true"
+  url="http://example.org/search?g={givenName}&amp;f={familyName}&amp;e={email}"
+  action="read"
+/&gt;
 
 Assume the values supplied are:
   givenName = Mike
@@ -737,7 +748,7 @@ Accept-Type: application/vnd.amundsen-uber+xml</pre>
 </div>
 <div class="sect3">
 <h4 id="_using_uber_span_class_monospaced_model_span_values_to_create_http_request_bodies">4.1.3. Using UBER <span class="monospaced">model</span> Values to create HTTP Request Bodies</h4>
-<div class="paragraph"><p>Any <span class="monospaced">model</span> value associated with a <span class="monospaced">data</span> element with the <span class="monospaced">action</span> property set to <span class="monospaced">append</span>, <span class="monospaced">partial</span>, or <span class="monospaced">replace</span> MUST be convereted into a valid HTTP request body. The follwing example shows how an UBER message snippet is converted into a valid HTTP request body:</p></div>
+<div class="paragraph"><p>Any <span class="monospaced">model</span> value associated with a <span class="monospaced">data</span> element SHOULD be convereted into a valid HTTP request body using the rules contained in <a href="#rfc6570">[RFC6570]</a>. The follwing example shows how an UBER message snippet is converted into a valid HTTP request body:</p></div>
 <div class="listingblock">
 <div class="title">Converting an UBER <span class="monospaced">append</span> Action into an HTTP Request</div>
 <div class="content monospaced">
@@ -793,8 +804,8 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
       action="append" /&gt;
     &lt;data name="search"
       rel="search collection"
-      url="http://example.org/search"
-      model="?g={givenName}&amp;f={familyName}&amp;e={email}" /&gt;
+      url="http://example.org/search?g={givenName}&amp;f={familyName}&amp;e={email}"
+      templated="true" /&gt;
 
     &lt;data name="person" rel="item http://example.org/rels/person" url="http://example.org/people/1"&gt;
       &lt;data name="givenName"&gt;Mildred&lt;/data&gt;
@@ -815,8 +826,8 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
   &lt;data id="places" rel="collection http://example.org/rels/places" url="http://example.org/places/"&gt;
     &lt;data name="search"
       rel="search collection"
-      url="http://example.org/search"
-      model="?r={addressRegion}&amp;l={addressLocality}&amp;p={postalCode}" /&gt;
+      url="http://example.org/search?r={addressRegion}&amp;l={addressLocality}&amp;p={postalCode}"
+      templated="true" /&gt;
 
     &lt;data name="place" url="http://example.org/places/1" rel="item http://example.org/rels/place"&gt;
       &lt;data name="name"&gt;Home&lt;/data&gt;
@@ -871,8 +882,8 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
           {
             "name" : "search",
             "rel" : ["search","collection"],
-            "url" : "http://example.org/people/search",
-            "model" : "?g={givenName}&amp;f={familyName}&amp;e={email}"
+            "url" : "http://example.org/people/search?g={givenName}&amp;f={familyName}&amp;e={email}",
+            "templated" : "true"
           },
           {
             "name" : "person",
@@ -918,8 +929,8 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
           {
             "name" : "search",
             "rel" : ["search","collection"],
-            "url" : "http://example.org/places/search",
-            "model" : "?r={addressRegion}&amp;l={addressLocality}&amp;p={postalCode}"
+            "url" : "http://example.org/places/search?r={addressRegion}&amp;l={addressLocality}&amp;p={postalCode}",
+            "templated" : "true"
           },
           {
             "name" : "place",
@@ -1178,7 +1189,7 @@ Irakli Nadareishvili.</p></div>
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-06 18:18:00 EDT
+Last updated 2015-04-06 18:54:35 EDT
 </div>
 </div>
 </body>

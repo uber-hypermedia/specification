@@ -1,8 +1,10 @@
 <!-- Uber snippet -->
 <data name="search" 
   rel="search" 
-  url="http://example.org/search" 
-  model="?g={givenName}&f={familyName}&e={email}" />
+  templated="true"
+  url="http://example.org/search?g={givenName}&f={familyName}&e={email}" 
+  action="read"
+/>
 
 Assume the values supplied are:
   givenName = Mike
