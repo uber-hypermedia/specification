@@ -8,8 +8,10 @@ Uniform Basis for Exchanging Representations (UBER)
 :scriptsdir: js
 
 == Document Status
-Author::
-  Mike Amundsen, mca@amundsen.com
+Authors::
+ * Mike Amundsen, mca@amundsen.com
+ * Irakli Nadareishvili, irakli@gmail.com 
+  
 Status::
   *[white red-background]#Working Draft#*
 
@@ -44,14 +46,14 @@ An implementation is not compliant if it fails to satisfy one or more of the MUS
 
 [NOTE]
 ====
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 <<rfc2119,[RFC2119]>>.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC <<rfc2119,[RFC2119]>>.
 ====
 
 == The UBER Message Model
-The UBER message model is very minimal. There are three elements, eleven possible properties, and seven reserved string values.
+The UBER message model is very minimal. The list of elements, properties, and reserved values is rather small in order to keep the process of describing and processing messages as lightweight as possible.
 
 === Elements
-There are only three elements in the UBER message model:
+Below is the list of all possible elements in an UBER message:
 
 +<uber>+::
   The root element of all UBER messages
@@ -61,7 +63,7 @@ There are only three elements in the UBER message model:
   The element that carries error details from the previous request.
 
 === Properties
-There are eleven properties in the UBER design:
+Below is a list of all the possible properties in an UBER message:
 
 +id+::
   The document-wide unique identifier for this element.
@@ -70,13 +72,15 @@ There are eleven properties in the UBER design:
 +rel+::
   Contains one or more link relation values.
 +url+::
-  A resolvable URL associated with this element.
+  A resolvable URL associated with this element. If the value of +templated+ is set to +true+, the value of +url+ SHOULD be treated as a URI Template.
++templated+::
+  If set to +true+ the value of the +url+ property contains a URI Template. The default value is +false+.
 +action+::
   The network request verb associated with this element.
 +transclude+::
-  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document. If no +transclude+ property exists, then the value of +transclude+ SHOULD be assumed to be +false+ (e.g. as a _navigation_). Any unsupported or unknown +transclude+ value MUST be treated as a _navigation_.
+  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document. 
 +model+::
-  Contains a template to be used to construct URL query strings or request bodies depending on the value in the +action+ property.
+  Contains a template to be used to construct message bodies.
 +sending+::
   Contains one or more media type identifiers for use when sending request bodies.
 +accepting+::
@@ -87,12 +91,16 @@ There are eleven properties in the UBER design:
   Indicates the UBER message version information.
 
 === Reserved Strings
-There are seven reserved strings used as possible values for UBER properties.
+Below is the list of reserved strings used as possible values for UBER properties.
+
+Reserved strings for the +templated+ property::
+  * +true+ : treat the value of +url+ as a URI Template per <<rfc6570,[RFC6570]>>
+  * +false+ : treat the value of +url+ as a valid URL per <<rfc3986,[RFC3986]>>. [*DEFAULT*]
 
 Reserved strings for the +action+ property::
   * +append+ : An unsafe, non-idempotent request to add a new item.
   * +partial+ : An unsafe, non-idempotent request to modify parts of an existing item.
-  * +read+ : A safe, idempotent request.
+  * +read+ : A safe, idempotent request. [*DEFAULT*]
   * +remove+ : An unsafe, idempotent request to delete an existing item.
   * +replace+ : An unsafe, idempotent request to replace an existing item.
 
@@ -105,7 +113,7 @@ Reserved strings for the +transclude+ property::
   * +video+ : treat the associated +url+ value as an _embedded_ video resource.
 
 === Link Relation Values
-There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in RFC5988 <<rfc5988, [RFC5988]>> and from shared public sources such as:
+There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in <<rfc5988, [RFC5988]>> and from shared public sources such as (but not limited to):
 
  * IANA Link Relations <<iana-rel, [IANA-REL]>>
  * Microformats Existing Rel Values <<mf-rel, [MF-REL]>>
@@ -115,6 +123,7 @@ There are no UBER-specific link relation values. Document authors SHOULD use reg
 Below is a simple `map' of the UBER message format (XML variant). Along with the three elements, there are ten properties (indicated by the `@' character). The +<data>+ element can appear as a child element of +<uber>+ and +<error>+ and may be nested as many times as needed.
 
 .UBER Message Model (XML)
+[source,xml]
 ----
 include::includes/message-model.xml[]
 ----
@@ -134,21 +143,24 @@ This is the root element of an UBER message. Every UBER message MUST have this a
 ----
 
 === The +<data>+ Element
-The +<data>+ element is the key element in the model. A valid UBER message SHOULD contain at least one +<data>+ element. If it does appear, the +<data>+ element appears as a child of the +<uber>+ or +<error>+ elements. The +<data>+ element MAY be nested as many times as needed. The +<data>+ element has the following property (all properties are OPTIONAL):
+The +<data>+ element is the key element in the model. A valid UBER message SHOULD contain at least one +<data>+ element. If it does appear, the +<data>+ element appears as a child of the +<uber>+ or +<error>+ elements. The +<data>+ element MAY be nested as many times as needed. The +<data>+ element has the following properties (all properties are OPTIONAL):
 
 +id+::
-  The document-wide unique identifier for this element. The value of +id+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +id+ property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of RFC3986 <<rfc3986,[RFC3986]>>.
+  The document-wide unique identifier for this element. The value of +id+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +id+ property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of <<rfc3986,[RFC3986]>>.
 
 +name+::
   A document-wide non-unique identifer for this element. The value of +name+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +name+ property is present it MAY be used as a variable in the UBER +model+ property as described in <<rfc6570,[RFC6570]>>.
 
 +rel+::
-  Contains a list of link relation values. These values SHOULD conform to the guidance provided in RFC5988 <<rfc5988, [RFC5988]>>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
+  Contains a list of link relation values. These values SHOULD conform to the guidance provided in <<rfc5988, [RFC5988]>>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
 +
 In UBER documents, the +rel+ property is used to supply domain-related semantic information for the associated +data+ element. This applies equally to +data+ elements used as hypermedia links (e.g. those with a valid +url+ property) and +data+ elements used to carry simple values (e.g. strings and numbers). 
 
 +url+::
-  A resolvable URL associated with this element. The value SHOULD conform to that described in RFC3986 <<rfc3986,[RFC3986]>>.
+  A resolvable URL associated with this element. If the +templated+ property is set to +true+, the value of the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. If the +templated+ property is set of +false+, contains an unknown value, or is missing, the value of the +url+ property SHOULD be treated as a URL per <<rfc3986,[RFC3986]>>.
+
++templated+::
+  If set to +true+ the value of the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. The default value is +false+.
 
 +action+::
   The network request verb associated with this element. The list of valid values for this element are:
@@ -160,16 +172,16 @@ In UBER documents, the +rel+ property is used to supply domain-related semantic 
   * +replace+ : An unsafe, idempotent request to replace an existing item (e.g. +HTTP.PUT+ <<rfc2616,[RFC2616]>>)
 
 +
-When the +<data>+ element has a +url+ property but no +action+ property, it SHOULD be assumed the +action+ property is set to +read+. Any value other than those listed here SHOULD be treated as +read+.
+When the +<data>+ element has a +url+ property but no +action+ property, it SHOULD be assumed the +action+ property is set to +read+. Any unknown value MUST be treated as +read+.
 
 +transclude+::
-  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document (+transclude="true"+) or treated as a 'navigation' to a new document (+transclude="false"+). If the property is missing, it SHOULD be assumed to be set to +false+ (e.g. 'navigation').
+  Indicates whether the content that is returned from the URL should be embedded within the currently loaded document (+transclude="true"+) or treated as a 'navigation' to a new document (+transclude="false"+). If no +transclude+ property exists, then the value of +transclude+ SHOULD be assumed to be +false+ (e.g. as a _navigation_). Any unsupported or unknown +transclude+ value MUST be treated as a _navigation_.
 
 +model+::
-  Contains a RFC6570-compliant <<rfc6570,[RFC6570]>> string to be used to construct URL query strings or request bodies depending on the value in the +action+ property. Variables in UBER +model+ strings SHOULD be resolved using the values from +name+ properties, but MAY come from any source available to the client application. If the +action+ property is set to +read+ or +remove+ then the +model+ is applied to the query string. If the +action+ value is set to +append+, +partial+, or +replace+ then the +model+ is applied to the request body.
+  Contains an <<rfc6570,[RFC6570]>>-compliant string to be used to construct message bodies. Variables in UBER +model+ strings SHOULD be resolved using the values from +name+ properties, but MAY come from any source available to the client application.
 
 +sending+::
-  Contains one or more media type identifiers for use when sending request bodies. One of the supplied identifiers SHOULD be selected as a guide when formatting the request body. For HTTP implementations, the selected identifier SHOULD be used as the value for the +Content-Type+ header. If this property is missing the setting should be assumed to be +application/x-www-form-urlencoded+ as described in RFC1867 <<rfc1867,[RFC1867]>>.
+  Contains one or more media type identifiers for use when sending request bodies. One of the supplied identifiers SHOULD be selected as a guide when formatting the request body. For HTTP implementations, the selected identifier SHOULD be used as the value for the +Content-Type+ header. If this property is missing the setting should be assumed to be +application/x-www-form-urlencoded+ as described in <<rfc1867,[RFC1867]>>.
 +
 In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.
 
@@ -181,7 +193,7 @@ In the XML variant the list of media-type identifiers appears as a space-separat
 +value+::
   In the XML variant of the UBER mesage format, inner text of the +<data>+ element contains the value associated with that element.
 +
-In the JSON variant there is a +value+ property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of RFC4627 <<rfc4627,[RFC4627]>>):
+In the JSON variant there is a +value+ property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of <<rfc4627,[RFC4627]>>):
 +
   * number
   * string
@@ -193,11 +205,13 @@ In the JSON variant there is a +value+ property that contains the associated val
 For both the XML and JSON variants, it is the responsibility of the document author to make sure the contents of the +value+ property are properly escaped as needed (per Section 2.4 of <<REC-XML,[REC-XML]>> and Section 2.5 of <<rfc4627,[RFC4627]>>).
 
 .Example +<data>+ Elements (XML)
+[source,xml]
 ----
 include::includes/search-sample.xml[]
 ----
 
 .Example +<data>+ Elements (JSON)
+[source,javascript]
 ----
 include::includes/search-sample.js[]
 ----
@@ -206,11 +220,13 @@ include::includes/search-sample.js[]
 The +<error>+ element contains any error information returned by the server regarding the previous request. The +<error>+ element has no properties. This is an OPTIONAL element. When present, it SHOULD contain one or more +<data>+ child elements. It is the +<data>+ child elements that contains error details.
 
 .Example +<error>+ Element (XML)
+[source,xml]
 ----
 include::includes/error-sample.xml[]
 ----
 
 .Example +<error>+ Element (JSON)
+[source,javascript]
 ----
 include::includes/error-sample.js[]
 ----
@@ -224,20 +240,20 @@ This section decribes the details of implementing UBER support over HTTP.
 ==== Mapping UBER +action+ Values to HTTP Methods
 When implementating support for UBER documents over HTTP one of the key details is to map the value of UBER's +action+ property to HTTP methods. Table #1 below provides this mapping:
 
-.Mapping HTTP Methods to UBER +action+ and +model+ Values
+.Mapping HTTP Methods to UBER +action+ Values
 [grid="rows", format="csv"]
 [options="header"]
 |====
-UBER Action,HTTP Method, UBER Model Modifies
-+append+,POST, Request Body
-+partial+,PATCH, Request Body
-+read+,GET, Query String
-+remove+,DELETE, Query String
-+replace+,PUT, Request Body
+UBER Action,HTTP Method
++append+,POST
++partial+,PATCH
++read+,GET
++remove+,DELETE
++replace+,PUT
 |====
 
-==== Using UBER +model+ Values to create HTTP Query Strings
-When applied to HTTP, any +model+ value associated with a +data+ element with the +action+ property set to +read+ or +remove+ MUST be converted into a valid query string. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:
+==== Using UBER +url+ Values to create HTTP Query Strings
+If the +templated+ property of a +data+ element is set to +true+ the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. The following example shows how an UBER message snippet is converted into a valid HTTP query string:
 
 .Converting an UBER +read+ Action into an HTTP Query String
 ----
@@ -245,7 +261,7 @@ include::includes/uber-query-string.txt[]
 ----
 
 ==== Using UBER +model+ Values to create HTTP Request Bodies
-Any +model+ value associated with a +data+ element with the +action+ property set to +append+, +partial+, or +replace+ MUST be convereted into a valid HTTP request body. The follwing example shows how an UBER message snippet is converted into a valid HTTP request body:
+Any +model+ value associated with a +data+ element SHOULD be convereted into a valid HTTP request body using the rules contained in <<rfc6570,[RFC6570]>>. The follwing example shows how an UBER message snippet is converted into a valid HTTP request body:
 
 .Converting an UBER +append+ Action into an HTTP Request
 ----
@@ -262,6 +278,7 @@ UBER messages may appear in XML or JSON formats. Below are examples of each.
 Below is an XML Example of an UBER message.
 
 .XML Example
+[source,xml]
 ----
 include::includes/full-example.xml[]
 ----
@@ -270,12 +287,13 @@ include::includes/full-example.xml[]
 Below is a JSON Example of an UBER message.
 
 .UBER JSON Example
+[source,javascript]
 ----
 include::includes/full-example.js[]
 ----
 
 == Supporting Profiles
-The UBER media-type supports the use of semantic profiles via the `profile' link relation type<<rfc6906,[RFC6906]>> in order to provide additional information about the application-level semantics for the message body. The profile value is a list of one or more IRIs identifying specific constraints or conventions that apply to an UBER document. 
+The UBER media-type supports the use of semantic profiles via the `profile' link relation type <<rfc6906,[RFC6906]>> in order to provide additional information about the application-level semantics for the message body. The profile value is a list of one or more IRIs identifying specific constraints or conventions that apply to an UBER document. 
 
 The profile value MUST NOT _change_ the semantics of the resource representation when processed without the profile value. The profile value MAY also be used by clients to express their preferences. Profile IRIs SHOULD be dereferenceable and SHOULD provide additional related semantic information.
 
@@ -298,7 +316,7 @@ Profile information can be supplied via the media type profile parameter. Exampl
 ----
 
 === Profile Link Header
-The Link Header<<rfc5988,[RFC5988]>> can also be used to communicate profile details. Examples of valid profile Link headers are:
+The Link Header <<rfc5988,[RFC5988]>> can also be used to communicate profile details. Examples of valid profile Link headers are:
 
 ----
  Link: <http://example.org/profiles/vcard>; rel="profile"
@@ -363,15 +381,15 @@ Below are the references used in this document.
  * [[idcoap18]] [CoAP] "Shelby, Z., Hartke, K., Bormann, C., "Constrained Application Protocol (CoAP)", June 28, 2013, https://tools.ietf.org/html/draft-ietf-core-coap-18
 
 == Acknowledgements
-The author would like to thank everyone who commented upon,
+The authors would like to thank everyone who commented upon,
 encouraged, and gave feedback to this specification,
 especially
 Cédric Brancourt,
 Mark W. Foster,
+Ben Hamill,
 Steve Klabnik,
 Matthew McClure,
-Stephen Mizell,
-Irakli Nadareishvili.
+Stephen Mizell.
 
 
 .
