@@ -8,8 +8,10 @@ Uniform Basis for Exchanging Representations (UBER)
 :scriptsdir: js
 
 == Document Status
-Author::
-  Mike Amundsen, mca@amundsen.com
+Authors::
+ * Mike Amundsen, mca@amundsen.com
+ * Irakli Nadareishvili, irakli@gmail.com 
+  
 Status::
   *[white red-background]#Working Draft#*
 
@@ -372,7 +374,7 @@ Below are the references used in this document.
  * [[idcoap18]] [CoAP] "Shelby, Z., Hartke, K., Bormann, C., "Constrained Application Protocol (CoAP)", June 28, 2013, https://tools.ietf.org/html/draft-ietf-core-coap-18
 
 == Acknowledgements
-The author would like to thank everyone who commented upon,
+The authors would like to thank everyone who commented upon,
 encouraged, and gave feedback to this specification,
 especially
 Cédric Brancourt,
@@ -380,8 +382,7 @@ Mark W. Foster,
 Ben Hamill,
 Steve Klabnik,
 Matthew McClure,
-Stephen Mizell,
-Irakli Nadareishvili.
+Stephen Mizell.
 
 
 .
