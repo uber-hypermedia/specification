@@ -116,7 +116,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 <div class="title">Note</div>
 </td>
 <td class="content">
-<div class="paragraph"><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 <a href="#rfc2119">[RFC2119]</a>.</p></div>
+<div class="paragraph"><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC <a href="#rfc2119">[RFC2119]</a>.</p></div>
 </td>
 </tr></table>
 </div>
@@ -264,6 +264,23 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 <div class="paragraph"><p>Below is the list of reserved strings used as possible values for UBER properties.</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
+Reserved strings for the <span class="monospaced">ttemplated</span> property
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">true</span> : treat the value of <span class="monospaced">url</span> as a URI Template per <a href="#rfc6570">[RFC6570]</a>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">false</span> : treat the value of <span class="monospaced">url</span> as a valid URL per <a href="#rfc3986">[RFC3986]</a>. [<strong>DEFAULT</strong>]
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
 Reserved strings for the <span class="monospaced">action</span> property
 </dt>
 <dd>
@@ -280,7 +297,7 @@ Reserved strings for the <span class="monospaced">action</span> property
 </li>
 <li>
 <p>
-<span class="monospaced">read</span> : A safe, idempotent request.
+<span class="monospaced">read</span> : A safe, idempotent request. [<strong>DEFAULT</strong>]
 </p>
 </li>
 <li>
@@ -336,7 +353,7 @@ Reserved strings for the <span class="monospaced">transclude</span> property
 </div>
 <div class="sect2">
 <h3 id="_link_relation_values">3.4. Link Relation Values</h3>
-<div class="paragraph"><p>There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in RFC5988 <a href="#rfc5988">[RFC5988]</a> and from shared public sources such as (but not limited to):</p></div>
+<div class="paragraph"><p>There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in <a href="#rfc5988">[RFC5988]</a> and from shared public sources such as (but not limited to):</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -399,7 +416,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </dt>
 <dd>
 <p>
-  The document-wide unique identifier for this element. The value of <span class="monospaced">id</span> must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the <span class="monospaced">id</span> property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of RFC3986 <a href="#rfc3986">[RFC3986]</a>.
+  The document-wide unique identifier for this element. The value of <span class="monospaced">id</span> must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the <span class="monospaced">id</span> property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of <a href="#rfc3986">[RFC3986]</a>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -415,7 +432,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </dt>
 <dd>
 <p>
-  Contains a list of link relation values. These values SHOULD conform to the guidance provided in RFC5988 <a href="#rfc5988">[RFC5988]</a>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
+  Contains a list of link relation values. These values SHOULD conform to the guidance provided in <a href="#rfc5988">[RFC5988]</a>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
 </p>
 <div class="paragraph"><p>In UBER documents, the <span class="monospaced">rel</span> property is used to supply domain-related semantic information for the associated <span class="monospaced">data</span> element. This applies equally to <span class="monospaced">data</span> elements used as hypermedia links (e.g. those with a valid <span class="monospaced">url</span> property) and <span class="monospaced">data</span> elements used to carry simple values (e.g. strings and numbers).</p></div>
 </dd>
@@ -424,7 +441,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </dt>
 <dd>
 <p>
-  A resolvable URL associated with this element. If the <span class="monospaced">templated</span> property is set to <span class="monospaced">true</span>, the value of the <span class="monospaced">url</span> property SHOULD be treated as a URI Template per <a href="#rfc6570">[RFC6570]</a>. If the <span class="monospaced">templated</span> property is set of <span class="monospaced">false</span>, contains an unknown value, or is missing, the value of the <span class="monospaced">url</span> property SHOULD be treated as a URL per RFC3986 <a href="#rfc3986">[RFC3986]</a>.
+  A resolvable URL associated with this element. If the <span class="monospaced">templated</span> property is set to <span class="monospaced">true</span>, the value of the <span class="monospaced">url</span> property SHOULD be treated as a URI Template per <a href="#rfc6570">[RFC6570]</a>. If the <span class="monospaced">templated</span> property is set of <span class="monospaced">false</span>, contains an unknown value, or is missing, the value of the <span class="monospaced">url</span> property SHOULD be treated as a URL per <a href="#rfc3986">[RFC3986]</a>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -469,7 +486,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>When the <span class="monospaced">&lt;data&gt;</span> element has a <span class="monospaced">url</span> property but no <span class="monospaced">action</span> property, it SHOULD be assumed the <span class="monospaced">action</span> property is set to <span class="monospaced">read</span>. Any value other than those listed here SHOULD be treated as <span class="monospaced">read</span>.</p></div>
+<div class="paragraph"><p>When the <span class="monospaced">&lt;data&gt;</span> element has a <span class="monospaced">url</span> property but no <span class="monospaced">action</span> property, it SHOULD be assumed the <span class="monospaced">action</span> property is set to <span class="monospaced">read</span>. Any unknown value MUST be treated as <span class="monospaced">read</span>.</p></div>
 </dd>
 <dt class="hdlist1">
 <span class="monospaced">transclude</span>
@@ -484,7 +501,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </dt>
 <dd>
 <p>
-  Contains a RFC6570-compliant <a href="#rfc6570">[RFC6570]</a> string to be used to construct message bodies. Variables in UBER <span class="monospaced">model</span> strings SHOULD be resolved using the values from <span class="monospaced">name</span> properties, but MAY come from any source available to the client application.
+  Contains an <a href="#rfc6570">[RFC6570]</a>-compliant string to be used to construct message bodies. Variables in UBER <span class="monospaced">model</span> strings SHOULD be resolved using the values from <span class="monospaced">name</span> properties, but MAY come from any source available to the client application.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -492,7 +509,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 </dt>
 <dd>
 <p>
-  Contains one or more media type identifiers for use when sending request bodies. One of the supplied identifiers SHOULD be selected as a guide when formatting the request body. For HTTP implementations, the selected identifier SHOULD be used as the value for the <span class="monospaced">Content-Type</span> header. If this property is missing the setting should be assumed to be <span class="monospaced">application/x-www-form-urlencoded</span> as described in RFC1867 <a href="#rfc1867">[RFC1867]</a>.
+  Contains one or more media type identifiers for use when sending request bodies. One of the supplied identifiers SHOULD be selected as a guide when formatting the request body. For HTTP implementations, the selected identifier SHOULD be used as the value for the <span class="monospaced">Content-Type</span> header. If this property is missing the setting should be assumed to be <span class="monospaced">application/x-www-form-urlencoded</span> as described in <a href="#rfc1867">[RFC1867]</a>.
 </p>
 <div class="paragraph"><p>In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.</p></div>
 </dd>
@@ -512,7 +529,7 @@ Dublin Core Metadata Element Set, Version 1.1 <a href="#dc-rel">[DC-REL]</a>
 <p>
   In the XML variant of the UBER mesage format, inner text of the <span class="monospaced">&lt;data&gt;</span> element contains the value associated with that element.
 </p>
-<div class="paragraph"><p>In the JSON variant there is a <span class="monospaced">value</span> property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of RFC4627 <a href="#rfc4627">[RFC4627]</a>):</p></div>
+<div class="paragraph"><p>In the JSON variant there is a <span class="monospaced">value</span> property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of <a href="#rfc4627">[RFC4627]</a>):</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -723,7 +740,7 @@ width:100%;
 </div>
 <div class="sect3">
 <h4 id="_using_uber_span_class_monospaced_url_span_values_to_create_http_query_strings">4.1.2. Using UBER <span class="monospaced">url</span> Values to create HTTP Query Strings</h4>
-<div class="paragraph"><p>If the <span class="monospaced">templated</span> property of a <span class="monospaced">data</span> element is set to <span class="monospaced">true</span> the <span class="monospaced">url</span> property SHOULD be treated as a URI Template per<a href="#rfc6570">[RFC6570]</a>. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:</p></div>
+<div class="paragraph"><p>If the <span class="monospaced">templated</span> property of a <span class="monospaced">data</span> element is set to <span class="monospaced">true</span> the <span class="monospaced">url</span> property SHOULD be treated as a URI Template per <a href="#rfc6570">[RFC6570]</a>. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:</p></div>
 <div class="listingblock">
 <div class="title">Converting an UBER <span class="monospaced">read</span> Action into an HTTP Query String</div>
 <div class="content monospaced">
@@ -988,7 +1005,7 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
 <div class="sect1">
 <h2 id="_supporting_profiles">6. Supporting Profiles</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>The UBER media-type supports the use of semantic profiles via the &#8216;profile&#8217; link relation type<a href="#rfc6906">[RFC6906]</a> in order to provide additional information about the application-level semantics for the message body. The profile value is a list of one or more IRIs identifying specific constraints or conventions that apply to an UBER document.</p></div>
+<div class="paragraph"><p>The UBER media-type supports the use of semantic profiles via the &#8216;profile&#8217; link relation type <a href="#rfc6906">[RFC6906]</a> in order to provide additional information about the application-level semantics for the message body. The profile value is a list of one or more IRIs identifying specific constraints or conventions that apply to an UBER document.</p></div>
 <div class="paragraph"><p>The profile value MUST NOT <em>change</em> the semantics of the resource representation when processed without the profile value. The profile value MAY also be used by clients to express their preferences. Profile IRIs SHOULD be dereferenceable and SHOULD provide additional related semantic information.</p></div>
 <div class="paragraph"><p>Use of profiles is OPTIONAL. Servers MAY ignore this value when sent by the client. Clients MAY ignore this value when sent by the server.</p></div>
 <div class="paragraph"><p>This version of the UBER specification supports three ways to communicate profile information:</p></div>
@@ -1021,7 +1038,7 @@ Within the UBER message body as a <span class="monospaced">data</span> element w
 </div>
 <div class="sect2">
 <h3 id="_profile_link_header">6.2. Profile Link Header</h3>
-<div class="paragraph"><p>The Link Header<a href="#rfc5988">[RFC5988]</a> can also be used to communicate profile details. Examples of valid profile Link headers are:</p></div>
+<div class="paragraph"><p>The Link Header <a href="#rfc5988">[RFC5988]</a> can also be used to communicate profile details. Examples of valid profile Link headers are:</p></div>
 <div class="listingblock">
 <div class="content monospaced">
 <pre> Link: &lt;http://example.org/profiles/vcard&gt;; rel="profile"
@@ -1189,7 +1206,7 @@ Irakli Nadareishvili.</p></div>
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-06 18:54:35 EDT
+Last updated 2015-04-06 21:01:09 EDT
 </div>
 </div>
 </body>

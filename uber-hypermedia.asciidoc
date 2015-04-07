@@ -44,7 +44,7 @@ An implementation is not compliant if it fails to satisfy one or more of the MUS
 
 [NOTE]
 ====
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 <<rfc2119,[RFC2119]>>.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC <<rfc2119,[RFC2119]>>.
 ====
 
 == The UBER Message Model
@@ -91,10 +91,14 @@ Below is a list of all the possible properties in an UBER message:
 === Reserved Strings
 Below is the list of reserved strings used as possible values for UBER properties.
 
+Reserved strings for the +ttemplated+ property::
+  * +true+ : treat the value of +url+ as a URI Template per <<rfc6570,[RFC6570]>>
+  * +false+ : treat the value of +url+ as a valid URL per <<rfc3986,[RFC3986]>>. [*DEFAULT*]
+
 Reserved strings for the +action+ property::
   * +append+ : An unsafe, non-idempotent request to add a new item.
   * +partial+ : An unsafe, non-idempotent request to modify parts of an existing item.
-  * +read+ : A safe, idempotent request.
+  * +read+ : A safe, idempotent request. [*DEFAULT*]
   * +remove+ : An unsafe, idempotent request to delete an existing item.
   * +replace+ : An unsafe, idempotent request to replace an existing item.
 
@@ -107,7 +111,7 @@ Reserved strings for the +transclude+ property::
   * +video+ : treat the associated +url+ value as an _embedded_ video resource.
 
 === Link Relation Values
-There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in RFC5988 <<rfc5988, [RFC5988]>> and from shared public sources such as (but not limited to):
+There are no UBER-specific link relation values. Document authors SHOULD use registered link relation values that comply the guidance provided in <<rfc5988, [RFC5988]>> and from shared public sources such as (but not limited to):
 
  * IANA Link Relations <<iana-rel, [IANA-REL]>>
  * Microformats Existing Rel Values <<mf-rel, [MF-REL]>>
@@ -139,18 +143,18 @@ This is the root element of an UBER message. Every UBER message MUST have this a
 The +<data>+ element is the key element in the model. A valid UBER message SHOULD contain at least one +<data>+ element. If it does appear, the +<data>+ element appears as a child of the +<uber>+ or +<error>+ elements. The +<data>+ element MAY be nested as many times as needed. The +<data>+ element has the following properties (all properties are OPTIONAL):
 
 +id+::
-  The document-wide unique identifier for this element. The value of +id+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +id+ property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of RFC3986 <<rfc3986,[RFC3986]>>.
+  The document-wide unique identifier for this element. The value of +id+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +id+ property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of <<rfc3986,[RFC3986]>>.
 
 +name+::
   A document-wide non-unique identifer for this element. The value of +name+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +name+ property is present it MAY be used as a variable in the UBER +model+ property as described in <<rfc6570,[RFC6570]>>.
 
 +rel+::
-  Contains a list of link relation values. These values SHOULD conform to the guidance provided in RFC5988 <<rfc5988, [RFC5988]>>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
+  Contains a list of link relation values. These values SHOULD conform to the guidance provided in <<rfc5988, [RFC5988]>>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
 +
 In UBER documents, the +rel+ property is used to supply domain-related semantic information for the associated +data+ element. This applies equally to +data+ elements used as hypermedia links (e.g. those with a valid +url+ property) and +data+ elements used to carry simple values (e.g. strings and numbers). 
 
 +url+::
-  A resolvable URL associated with this element. If the +templated+ property is set to +true+, the value of the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. If the +templated+ property is set of +false+, contains an unknown value, or is missing, the value of the +url+ property SHOULD be treated as a URL per RFC3986 <<rfc3986,[RFC3986]>>.
+  A resolvable URL associated with this element. If the +templated+ property is set to +true+, the value of the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. If the +templated+ property is set of +false+, contains an unknown value, or is missing, the value of the +url+ property SHOULD be treated as a URL per <<rfc3986,[RFC3986]>>.
 
 +templated+::
   If set to +true+ the value of the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. The default value is +false+.
@@ -165,16 +169,16 @@ In UBER documents, the +rel+ property is used to supply domain-related semantic 
   * +replace+ : An unsafe, idempotent request to replace an existing item (e.g. +HTTP.PUT+ <<rfc2616,[RFC2616]>>)
 
 +
-When the +<data>+ element has a +url+ property but no +action+ property, it SHOULD be assumed the +action+ property is set to +read+. Any value other than those listed here SHOULD be treated as +read+.
+When the +<data>+ element has a +url+ property but no +action+ property, it SHOULD be assumed the +action+ property is set to +read+. Any unknown value MUST be treated as +read+.
 
 +transclude+::
   Indicates whether the content that is returned from the URL should be embedded within the currently loaded document (+transclude="true"+) or treated as a 'navigation' to a new document (+transclude="false"+). If no +transclude+ property exists, then the value of +transclude+ SHOULD be assumed to be +false+ (e.g. as a _navigation_). Any unsupported or unknown +transclude+ value MUST be treated as a _navigation_.
 
 +model+::
-  Contains a RFC6570-compliant <<rfc6570,[RFC6570]>> string to be used to construct message bodies. Variables in UBER +model+ strings SHOULD be resolved using the values from +name+ properties, but MAY come from any source available to the client application.
+  Contains an <<rfc6570,[RFC6570]>>-compliant string to be used to construct message bodies. Variables in UBER +model+ strings SHOULD be resolved using the values from +name+ properties, but MAY come from any source available to the client application.
 
 +sending+::
-  Contains one or more media type identifiers for use when sending request bodies. One of the supplied identifiers SHOULD be selected as a guide when formatting the request body. For HTTP implementations, the selected identifier SHOULD be used as the value for the +Content-Type+ header. If this property is missing the setting should be assumed to be +application/x-www-form-urlencoded+ as described in RFC1867 <<rfc1867,[RFC1867]>>.
+  Contains one or more media type identifiers for use when sending request bodies. One of the supplied identifiers SHOULD be selected as a guide when formatting the request body. For HTTP implementations, the selected identifier SHOULD be used as the value for the +Content-Type+ header. If this property is missing the setting should be assumed to be +application/x-www-form-urlencoded+ as described in <<rfc1867,[RFC1867]>>.
 +
 In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.
 
@@ -186,7 +190,7 @@ In the XML variant the list of media-type identifiers appears as a space-separat
 +value+::
   In the XML variant of the UBER mesage format, inner text of the +<data>+ element contains the value associated with that element.
 +
-In the JSON variant there is a +value+ property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of RFC4627 <<rfc4627,[RFC4627]>>):
+In the JSON variant there is a +value+ property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of <<rfc4627,[RFC4627]>>):
 +
   * number
   * string
@@ -242,7 +246,7 @@ UBER Action,HTTP Method
 |====
 
 ==== Using UBER +url+ Values to create HTTP Query Strings
-If the +templated+ property of a +data+ element is set to +true+ the +url+ property SHOULD be treated as a URI Template per<<rfc6570,[RFC6570]>>. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:
+If the +templated+ property of a +data+ element is set to +true+ the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:
 
 .Converting an UBER +read+ Action into an HTTP Query String
 ----
@@ -280,7 +284,7 @@ include::includes/full-example.js[]
 ----
 
 == Supporting Profiles
-The UBER media-type supports the use of semantic profiles via the `profile' link relation type<<rfc6906,[RFC6906]>> in order to provide additional information about the application-level semantics for the message body. The profile value is a list of one or more IRIs identifying specific constraints or conventions that apply to an UBER document. 
+The UBER media-type supports the use of semantic profiles via the `profile' link relation type <<rfc6906,[RFC6906]>> in order to provide additional information about the application-level semantics for the message body. The profile value is a list of one or more IRIs identifying specific constraints or conventions that apply to an UBER document. 
 
 The profile value MUST NOT _change_ the semantics of the resource representation when processed without the profile value. The profile value MAY also be used by clients to express their preferences. Profile IRIs SHOULD be dereferenceable and SHOULD provide additional related semantic information.
 
@@ -303,7 +307,7 @@ Profile information can be supplied via the media type profile parameter. Exampl
 ----
 
 === Profile Link Header
-The Link Header<<rfc5988,[RFC5988]>> can also be used to communicate profile details. Examples of valid profile Link headers are:
+The Link Header <<rfc5988,[RFC5988]>> can also be used to communicate profile details. Examples of valid profile Link headers are:
 
 ----
  Link: <http://example.org/profiles/vcard>; rel="profile"
