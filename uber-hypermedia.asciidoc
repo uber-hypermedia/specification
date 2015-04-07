@@ -123,6 +123,7 @@ There are no UBER-specific link relation values. Document authors SHOULD use reg
 Below is a simple `map' of the UBER message format (XML variant). Along with the three elements, there are ten properties (indicated by the `@' character). The +<data>+ element can appear as a child element of +<uber>+ and +<error>+ and may be nested as many times as needed.
 
 .UBER Message Model (XML)
+[source,xml]
 ----
 include::includes/message-model.xml[]
 ----
@@ -204,11 +205,13 @@ In the JSON variant there is a +value+ property that contains the associated val
 For both the XML and JSON variants, it is the responsibility of the document author to make sure the contents of the +value+ property are properly escaped as needed (per Section 2.4 of <<REC-XML,[REC-XML]>> and Section 2.5 of <<rfc4627,[RFC4627]>>).
 
 .Example +<data>+ Elements (XML)
+[source,xml]
 ----
 include::includes/search-sample.xml[]
 ----
 
 .Example +<data>+ Elements (JSON)
+[source,javascript]
 ----
 include::includes/search-sample.js[]
 ----
@@ -217,11 +220,13 @@ include::includes/search-sample.js[]
 The +<error>+ element contains any error information returned by the server regarding the previous request. The +<error>+ element has no properties. This is an OPTIONAL element. When present, it SHOULD contain one or more +<data>+ child elements. It is the +<data>+ child elements that contains error details.
 
 .Example +<error>+ Element (XML)
+[source,xml]
 ----
 include::includes/error-sample.xml[]
 ----
 
 .Example +<error>+ Element (JSON)
+[source,javascript]
 ----
 include::includes/error-sample.js[]
 ----
@@ -273,6 +278,7 @@ UBER messages may appear in XML or JSON formats. Below are examples of each.
 Below is an XML Example of an UBER message.
 
 .XML Example
+[source,xml]
 ----
 include::includes/full-example.xml[]
 ----
@@ -281,6 +287,7 @@ include::includes/full-example.xml[]
 Below is a JSON Example of an UBER message.
 
 .UBER JSON Example
+[source,javascript]
 ----
 include::includes/full-example.js[]
 ----
