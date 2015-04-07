@@ -235,7 +235,7 @@ This section decribes the details of implementing UBER support over HTTP.
 ==== Mapping UBER +action+ Values to HTTP Methods
 When implementating support for UBER documents over HTTP one of the key details is to map the value of UBER's +action+ property to HTTP methods. Table #1 below provides this mapping:
 
-.Mapping HTTP Methods to UBER +action+ and +model+ Values
+.Mapping HTTP Methods to UBER +action+ Values
 [grid="rows", format="csv"]
 [options="header"]
 |====
