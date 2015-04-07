@@ -93,7 +93,7 @@ Below is a list of all the possible properties in an UBER message:
 === Reserved Strings
 Below is the list of reserved strings used as possible values for UBER properties.
 
-Reserved strings for the +ttemplated+ property::
+Reserved strings for the +templated+ property::
   * +true+ : treat the value of +url+ as a URI Template per <<rfc6570,[RFC6570]>>
   * +false+ : treat the value of +url+ as a valid URL per <<rfc3986,[RFC3986]>>. [*DEFAULT*]
 
