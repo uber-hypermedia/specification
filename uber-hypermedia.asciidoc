@@ -253,7 +253,7 @@ UBER Action,HTTP Method
 |====
 
 ==== Using UBER +url+ Values to create HTTP Query Strings
-If the +templated+ property of a +data+ element is set to +true+ the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. The follwing example shows how an UBER message snippet is converted into a valid HTTP query string:
+If the +templated+ property of a +data+ element is set to +true+ the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. The following example shows how an UBER message snippet is converted into a valid HTTP query string:
 
 .Converting an UBER +read+ Action into an HTTP Query String
 ----
