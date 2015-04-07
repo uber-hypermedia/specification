@@ -16,7 +16,7 @@
       {
         "name" : "search", 
         "rel" : ["search","collection"],
-        "url" : "http://example.org/search?{title}",
+        "url" : "http://example.org/search{?title}",
         "templated" : "true"
       },
       {

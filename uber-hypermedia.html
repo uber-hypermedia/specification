@@ -60,7 +60,7 @@ Last Updated
 </dt>
 <dd>
 <p>
-  2015-04-06
+  2015-04-07
 </p>
 </dd>
 <dt class="hdlist1">
@@ -199,7 +199,7 @@ Maintain fidelity for more than one base message format (XML, JSON, etc.)
 </dt>
 <dd>
 <p>
-  A resolvable URL associated with this element. The value MAY be a URL Template.
+  A resolvable URL associated with this element. If the value of <span class="monospaced">templated</span> is set to <span class="monospaced">true</span>, the value of <span class="monospaced">url</span> SHOULD be treated as a URI Template.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -575,7 +575,7 @@ string
 <pre>&lt;uber version="1.0"&gt;
   &lt;data rel="self" url="http://example.org/" /&gt;
   &lt;data name="list" rel="collection" url="http://example.org/list/"/&gt;
-  &lt;data name="search" rel="search collection" url="http://example.org/search?{title}" templated="true" /&gt;
+  &lt;data name="search" rel="search collection" url="http://example.org/search{?title}" templated="true" /&gt;
   &lt;data name="todo" rel="item http://example.org/rels/todo" url="http://example.org/list/1"&gt;
     &lt;data name="title"&gt;Clean House&lt;/data&gt;
     &lt;data name="dueDate"&gt;2014-05-01&lt;/data&gt;
@@ -607,7 +607,7 @@ string
       {
         "name" : "search",
         "rel" : ["search","collection"],
-        "url" : "http://example.org/search?{title}",
+        "url" : "http://example.org/search{?title}",
         "templated" : "true"
       },
       {
@@ -757,7 +757,7 @@ width:100%;
 &lt;data name="search"
   rel="search"
   templated="true"
-  url="http://example.org/search?g={givenName}&amp;f={familyName}&amp;e={email}"
+  url="http://example.org/search{?givenName,familyName,email}"
   action="read"
 /&gt;
 
@@ -767,7 +767,7 @@ Assume the values supplied are:
   email = mike@example.org
 
 *** HTTP Request ***
-GET /search/?g=Mike&amp;f=Amundsen&amp;e=mike%40example.org HTTP/1.1
+GET /search/?givenName=Mike&amp;familyName=Amundsen&amp;email=mike%40example.org HTTP/1.1
 Host: example.org
 Accept-Type: application/vnd.amundsen-uber+xml</pre>
 </div></div>
@@ -830,7 +830,7 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
       action="append" /&gt;
     &lt;data name="search"
       rel="search collection"
-      url="http://example.org/search?g={givenName}&amp;f={familyName}&amp;e={email}"
+      url="http://example.org/search{?givenName,familyName,email}"
       templated="true" /&gt;
 
     &lt;data name="person" rel="item http://example.org/rels/person" url="http://example.org/people/1"&gt;
@@ -852,7 +852,7 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
   &lt;data id="places" rel="collection http://example.org/rels/places" url="http://example.org/places/"&gt;
     &lt;data name="search"
       rel="search collection"
-      url="http://example.org/search?r={addressRegion}&amp;l={addressLocality}&amp;p={postalCode}"
+      url="http://example.org/search{?addressRegion,addressLocality,postalCode}"
       templated="true" /&gt;
 
     &lt;data name="place" url="http://example.org/places/1" rel="item http://example.org/rels/place"&gt;
@@ -908,7 +908,7 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
           {
             "name" : "search",
             "rel" : ["search","collection"],
-            "url" : "http://example.org/people/search?g={givenName}&amp;f={familyName}&amp;e={email}",
+            "url" : "http://example.org/people/search{?givenName,familyName,email}",
             "templated" : "true"
           },
           {
@@ -955,7 +955,7 @@ g=Mike&amp;f=Amundsen&amp;e=mike%40example.org&amp;a=http%3A%2F%2Fexample.org%2F
           {
             "name" : "search",
             "rel" : ["search","collection"],
-            "url" : "http://example.org/places/search?r={addressRegion}&amp;l={addressLocality}&amp;p={postalCode}",
+            "url" : "http://example.org/places/search{?addressRegion,addressLocality,postalCode}",
             "templated" : "true"
           },
           {
@@ -1215,7 +1215,7 @@ Stephen Mizell.</p></div>
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-04-06 21:15:56 EDT
+Last updated 2015-04-07 11:33:47 EDT
 </div>
 </div>
 </body>

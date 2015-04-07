@@ -72,7 +72,7 @@ Below is a list of all the possible properties in an UBER message:
 +rel+::
   Contains one or more link relation values.
 +url+::
-  A resolvable URL associated with this element. The value MAY be a URL Template.
+  A resolvable URL associated with this element. If the value of +templated+ is set to +true+, the value of +url+ SHOULD be treated as a URI Template.
 +templated+::
   If set to +true+ the value of the +url+ property contains a URI Template. The default value is +false+.
 +action+::

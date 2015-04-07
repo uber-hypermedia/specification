@@ -2,7 +2,7 @@
 <data name="search" 
   rel="search" 
   templated="true"
-  url="http://example.org/search?g={givenName}&f={familyName}&e={email}" 
+  url="http://example.org/search{?givenName,familyName,email}" 
   action="read"
 />
 
@@ -12,7 +12,7 @@ Assume the values supplied are:
   email = mike@example.org
 
 *** HTTP Request ***
-GET /search/?g=Mike&f=Amundsen&e=mike%40example.org HTTP/1.1
+GET /search/?givenName=Mike&familyName=Amundsen&email=mike%40example.org HTTP/1.1
 Host: example.org
 Accept-Type: application/vnd.amundsen-uber+xml
 

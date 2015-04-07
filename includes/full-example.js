@@ -22,7 +22,7 @@
           {
             "name" : "search",
             "rel" : ["search","collection"],
-            "url" : "http://example.org/people/search?g={givenName}&f={familyName}&e={email}",
+            "url" : "http://example.org/people/search{?givenName,familyName,email}",
             "templated" : "true"
           },
           {
@@ -69,7 +69,7 @@
           {
             "name" : "search",
             "rel" : ["search","collection"],
-            "url" : "http://example.org/places/search?r={addressRegion}&l={addressLocality}&p={postalCode}",
+            "url" : "http://example.org/places/search{?addressRegion,addressLocality,postalCode}",
             "templated" : "true"
           },
           {
