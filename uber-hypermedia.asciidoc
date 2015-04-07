@@ -377,6 +377,7 @@ encouraged, and gave feedback to this specification,
 especially
 Cédric Brancourt,
 Mark W. Foster,
+Ben Hamill,
 Steve Klabnik,
 Matthew McClure,
 Stephen Mizell,
