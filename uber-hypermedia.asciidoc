@@ -74,6 +74,10 @@ Below is a list of all the possible properties in an UBER document:
   The document-wide unique identifier for this element.
 +name+::
   A document-wide non-unique identifier for this element.
++label+::
+  An optional hint providing suggested text that can help clients in 
+  rendering / captioning the data element, client-side. Clients MAY
+  take the label under consideration or ignore it completely.
 +rel+::
   Contains one or more link relation values.
 +url+::
