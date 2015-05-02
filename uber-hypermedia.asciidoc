@@ -337,7 +337,7 @@ Profile information can be supplied as one or more +data+ elements within an UBE
 ----
 
 == Extensibility
-This document describes the UBER document-format's markup vocabulary. Markup from other vocabularies ("foreign markup") can be used in an UBER document. Any extensions to the UBER Hypermedia vocabulary MUST not redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the UBER vocabulary SHOULD ignore them.
+This specification describes the UBER document-format's markup vocabulary. Markup from other vocabularies ("foreign markup") can be used in an UBER document. Any extensions to the UBER Hypermedia vocabulary MUST not redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the UBER vocabulary SHOULD ignore them.
 
 The details of designing and implementing UBER extensions is beyond the scope of this document.
 
