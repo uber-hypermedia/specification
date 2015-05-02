@@ -31,9 +31,9 @@
             "url" : "http://example.org/people/1",
             "data" :
             [
-              {"name" : "givenName", "value" : "Mike"},
-              {"name" : "familyName", "value" : "Amundsen"},
-              {"name" : "email", "value" : "mike@example.org"},
+              {"name" : "givenName", "value" : "Mike", "label" : "First Name"},
+              {"name" : "familyName", "value" : "Amundsen", "label" : "Last Name"},
+              {"name" : "email", "value" : "mike@example.org", "label" : "E-mail"},
               {"name" : "avatarUrl", "transclude" : "true", 
                   "url" : "http://example.org/avatars/1", 
                   "value" : "User Photo",

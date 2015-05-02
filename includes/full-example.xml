@@ -14,9 +14,9 @@
       templated="true" />
       
     <data name="person" rel="item http://example.org/rels/person" url="http://example.org/people/1">
-      <data name="givenName">Mildred</data>
-      <data name="familyName">Amundsen</data>
-      <data name="email">mildred@example.org</data>
+      <data name="givenName" label="First Name">Mildred</data>
+      <data name="familyName" label="Last Name">Amundsen</data>
+      <data name="email" label="E-mail">mildred@example.org</data>
       <data name="avatarUrl" url="http://example.org/avatars/1" 
         transclude="true" accepting="image/*">User Photo</data>
     </data>
