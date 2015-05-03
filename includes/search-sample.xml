@@ -1,14 +1,14 @@
 <uber version="1.0">
   <data rel="self" url="http://example.org/" />
-  <data name="list" rel="collection" url="http://example.org/list/"/>
-  <data name="search" rel="search collection" url="http://example.org/search{?title}" templated="true" />
+  <data name="list" label="ToDo List" rel="collection" url="http://example.org/list/"/>
+  <data name="search" label="Search" rel="search collection" url="http://example.org/search{?title}" templated="true" />
   <data name="todo" rel="item http://example.org/rels/todo" url="http://example.org/list/1">
-    <data name="title">Clean House</data>
-    <data name="dueDate">2014-05-01</data>
+    <data name="title" label="Title">Clean House</data>
+    <data name="dueDate" label="Date Due">2014-05-01</data>
   </data>
   <data name="todo" rel="item http://example.org/rels/todo" url="http://example.org/list/2">
-    <data name="title">Paint the fence</data>
-    <data name="dueDate">2014-06-01</data>
+    <data name="title" label="Title">Paint the fence</data>
+    <data name="dueDate" label="Date Due">2014-06-01</data>
   </data>
 </uber>
 

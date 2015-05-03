@@ -1,11 +1,11 @@
 <uber @version>
-  <data @id @name @rel @url @templated @action @transclude @model @sending @accepting>
+  <data @id @name @rel @label @url @templated @action @transclude @model @sending @accepting>
     <data ... >
        <data ... />
     </data>  
   </data>
   <error>
-    <data @id @name @rel @url @templated @action @transclude @model @sending @accepting>
+    <data @id @name @rel @label @url @templated @action @transclude @model @sending @accepting>
        <data ... />
     </data>
   </error>

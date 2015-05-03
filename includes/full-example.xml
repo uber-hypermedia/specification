@@ -14,16 +14,16 @@
       templated="true" />
       
     <data name="person" rel="item http://example.org/rels/person" url="http://example.org/people/1">
-      <data name="givenName">Mildred</data>
-      <data name="familyName">Amundsen</data>
-      <data name="email">mildred@example.org</data>
+      <data name="givenName" label="First Name">Mildred</data>
+      <data name="familyName" label="Last Name">Amundsen</data>
+      <data name="email" label="E-mail">mildred@example.org</data>
       <data name="avatarUrl" url="http://example.org/avatars/1" 
         transclude="true" accepting="image/*">User Photo</data>
     </data>
     <data name="person" rel="item http://example.org/rels/person" url="http://example.org/people/2">
-      <data name="givenName">Mildred</data>
-      <data name="familyName">Amundsen</data>
-      <data name="email">mildred@example.org</data>
+      <data name="givenName" label="First Name">Mildred</data>
+      <data name="familyName" label="Last Name">Amundsen</data>
+      <data name="email" label="E-mail">mildred@example.org</data>
       <data name="avatarUrl" url="http://example.org/avatars/2" 
         transclude="true" accepting="image/*">User Photo</data>
     </data>
@@ -38,19 +38,19 @@
     <data name="place" url="http://example.org/places/1" rel="item http://example.org/rels/place">
       <data name="name">Home</data>
       <data name="address">
-        <data name="streetAddress">123 Main</data>
-        <data name="addressLocality">Byteville</data>
-        <data name="addressRegion">MD</data>
-        <data name="postalCode">12345</data>
+        <data name="streetAddress" label="Street Address">123 Main</data>
+        <data name="addressLocality" label="City">Byteville</data>
+        <data name="addressRegion" label="State">MD</data>
+        <data name="postalCode" label="ZIP">12345</data>
       </data>
     </data>
     <data name="place" url="http://example.org/places/2" rel="item http://example.org/rels/place">
       <data name="name">Work</data>
       <data name="address">
-        <data name="streetAddress">456 Grand Ave.</data>
-        <data name="addressLocality">Byteville</data>
-        <data name="addressRegion">MD</data>
-        <data name="postalCode">12345</data>
+        <data name="streetAddress" label="Street Address">456 Grand Ave.</data>
+        <data name="addressLocality" label="City">Byteville</data>
+        <data name="addressRegion" label="State">MD</data>
+        <data name="postalCode" label="ZIP">12345</data>
       </data>
     </data>
   </data>
