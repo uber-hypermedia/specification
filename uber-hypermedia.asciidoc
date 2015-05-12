@@ -16,7 +16,7 @@ Status::
   *[black yellow-background]#Stable Draft#* -- _It is safe to build demo apps on this stable draft._
 
 ////
-  *[white red-background]#Working Draft#* -- _Only experimental and `proof-of-concept apps should be built on this unstable draft._
+  *[white red-background]#Working Draft#* -- _Only experimental and `proof-of-concept' apps should be built on this unstable draft._
   *[white blue-background]#Submitted to IANA#* -- _This specification is not expected to introduce any breaking changes for this media-type._
   *[white green-background]#Approved by IANA#* -- _This specification will not introduce any breaking changes for this media-type._
 ////
