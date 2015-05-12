@@ -47,9 +47,9 @@
             "url" : "http://example.org/people/2",
             "data" :
             [
-              {"name" : "givenName", "value" : "Mildred"},
-              {"name" : "familyName", "value" : "Amundsen"},
-              {"name" : "email", "value" : "mildred@example.org"},
+              {"name" : "givenName", "value" : "Mildred", "label" : "First Name"},
+              {"name" : "familyName", "value" : "Amundsen", "label" : "Last Name"},
+              {"name" : "email", "value" : "mildred@example.org", "label" : "E-mail"},
               {"name" : "avatarUrl", "transclude" : "true", 
                   "url" : "http://example.org/avatars/2", 
                   "value" : "User Photo",
@@ -86,10 +86,10 @@
                 "name" : "address",
                 "data" :
                 [
-                  {"name" : "streetAddress", "value" : "123 Main Street"},
-                  {"name" : "addressLocalitly", "value" : "Byteville"},
-                  {"name" : "addressRegion", "value" : "MD"},
-                  {"name" : "postalCode", "value" : "12345"}
+                  {"name" : "streetAddress", "value" : "123 Main Street", "label" : "Street Address"},
+                  {"name" : "addressLocalitly", "value" : "Byteville", "label" : "City"},
+                  {"name" : "addressRegion", "value" : "MD", "label" : "State"},
+                  {"name" : "postalCode", "value" : "12345", "label" : "ZIP"}
                 ]
               }
             ]
@@ -108,10 +108,10 @@
                 "name" : "address",
                 "data" : 
                 [
-                  {"name" : "streetAddress", "value" : "1456 Grand Ave."},
-                  {"name" : "addressLocalitly", "value" : "Byteville"},
-                  {"name" : "addressRegion", "value" : "MD"},
-                  {"name" : "postalCode", "value" : "12345"}
+                  {"name" : "streetAddress", "value" : "1456 Grand Ave.", "label" : "Street Address"},
+                  {"name" : "addressLocalitly", "value" : "Byteville", "label" : "City"},
+                  {"name" : "addressRegion", "value" : "MD", "label" : "State"},
+                  {"name" : "postalCode", "value" : "12345", "label" : "ZIP"}
                 ]
               }
             ]

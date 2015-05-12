@@ -74,12 +74,10 @@ Below is a list of all the possible properties in an UBER document:
   The document-wide unique identifier for this element.
 +name+::
   A document-wide non-unique identifier for this element.
-+label+::
-  An optional hint providing suggested text that can help clients in 
-  rendering / captioning the data element, client-side. Clients MAY
-  take the label under consideration or ignore it completely.
 +rel+::
   Contains one or more link relation values.
++label+::
+  Contains a string that represents the caption for the +value+ property of the associated +data+ element.
 +url+::
   A resolvable URL associated with this element. If the value of +templated+ is set to +true+, the value of +url+ SHOULD be treated as a URI Template.
 +templated+::
@@ -129,7 +127,7 @@ There are no UBER-specific link relation values. Document authors SHOULD use reg
  * Dublin Core Metadata Element Set, Version 1.1 <<dc-rel,[DC-REL]>>
 
 === Document Map
-Below is a simple `map' of the UBER document format (XML variant). Along with the three elements, there are ten properties (indicated by the `@' character). The +<data>+ element can appear as a child element of +<uber>+ and +<error>+ and may be nested as many times as needed.
+Below is a simple `map' of the UBER document format (XML variant). Along with the three elements, there are 12 properties (indicated by the `@' character). The +<data>+ element can appear as a child element of +<uber>+ and +<error>+ and may be nested as many times as needed.
 
 .UBER Document Model (XML)
 [source,xml]
@@ -164,6 +162,9 @@ The +<data>+ element is the key element in the model. A valid UBER document SHOU
   Contains a list of link relation values. These values SHOULD conform to the guidance provided in <<rfc5988, [RFC5988]>>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
 +
 In UBER documents, the +rel+ property is used to supply domain-related semantic information for the associated +data+ element. This applies equally to +data+ elements used as hypermedia links (e.g. those with a valid +url+ property) and +data+ elements used to carry simple values (e.g. strings and numbers). 
+
++label+::
+  Contains a string that represents the caption for the +value+ property of the associated +data+ element. The +data+ element MAY contain this property. If it exists and contains a valid value, applications MAY use it when rendering the documents. 
 
 +url+::
   A resolvable URL associated with this element. If the +templated+ property is set to +true+, the value of the +url+ property SHOULD be treated as a URI Template per <<rfc6570,[RFC6570]>>. If the +templated+ property is set of +false+, contains an unknown value, or is missing, the value of the +url+ property SHOULD be treated as a URL per <<rfc3986,[RFC3986]>>.

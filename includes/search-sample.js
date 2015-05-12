@@ -10,11 +10,13 @@
       },
       {
         "name" : "list", 
+        "label" : "ToDo List",
         "rel" : ["collection"], 
         "url" : "http://example.org/list/"
       },
       {
         "name" : "search", 
+        "label" : "Search",
         "rel" : ["search","collection"],
         "url" : "http://example.org/search{?title}",
         "templated" : "true"
@@ -25,8 +27,8 @@
         "url" : "http://example.org/list/1",
         "data" : 
         [
-          {"name" : "title", "value" : "Clean house"},
-          {"name" : "dueDate", "value" : "2014-05-01"}
+          {"name" : "title", "label" : "Title", "value" : "Clean house"},
+          {"name" : "dueDate", "label" : "Date Due", "value" : "2014-05-01"}
         ]
       },
       {
@@ -35,8 +37,8 @@
         "url" : "http://example.org/list/2",
         "data" : 
         [
-          {"name" : "title", "value" : "Paint the fence"},
-          {"name" : "dueDate", "value" : "2014-06-01"}
+          {"name" : "title", "label" : "Title", "value" : "Paint the fence"},
+          {"name" : "dueDate", "label" : "Date Due", "value" : "2014-06-01"}
         ]
       }
     ]    
