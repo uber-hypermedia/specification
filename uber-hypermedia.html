@@ -50,7 +50,7 @@ Status
 </dt>
 <dd>
 <p>
-  <strong><span class="white red-background">Working Draft</span></strong>
+  <strong><span class="black yellow-background">Stable Draft</span></strong>&#8201;&#8212;&#8201;<em>It is safe to build demo apps on this stable draft.</em>
 </p>
 </dd>
 </dl></div>
@@ -60,7 +60,7 @@ Last Updated
 </dt>
 <dd>
 <p>
-  2015-05-02
+  2015-05-12
 </p>
 </dd>
 <dt class="hdlist1">
@@ -68,7 +68,7 @@ Proposed IANA Registrations
 </dt>
 <dd>
 <p>
-  <span class="monospaced">application/vnd.amundsen-uber+xml</span>, <span class="monospaced">application/vnd.amundsen-uber+json</span>
+  <span class="monospaced">application/vnd.uber+xml</span>, <span class="monospaced">application/vnd.uber+json</span>
 </p>
 </dd>
 <dt class="hdlist1">
@@ -594,7 +594,7 @@ http://www.gnu.org/software/src-highlite -->
 </dt>
 <dd>
 <p>
-  Contains one or more media type identifiers to expect when recieving request bodies. The contents of this property SHOULD indicate the formats in which the server is able to return a response body. For HTTP implementations the contents of this property SHOULD be used as the value for the <span class="monospaced">Accept</span> header. If this property is missing, the setting should be assumed to be set to the same value as that of the currently loaded representation (<span class="monospaced">application/vnd.uber-amundsen+xml</span> or <span class="monospaced">application/vnd.uber-amundsen+json</span>).
+  Contains one or more media type identifiers to expect when recieving request bodies. The contents of this property SHOULD indicate the formats in which the server is able to return a response body. For HTTP implementations the contents of this property SHOULD be used as the value for the <span class="monospaced">Accept</span> header. If this property is missing, the setting should be assumed to be set to the same value as that of the currently loaded representation (<span class="monospaced">application/vnd.uber+xml</span> or <span class="monospaced">application/vnd.uber+json</span>).
 </p>
 <div class="paragraph"><p>In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.</p></div>
 </dd>
@@ -1127,8 +1127,8 @@ Within the UBER document body as a <span class="monospaced">data</span> element 
 <div class="paragraph"><p>Profile information can be supplied via the media type profile parameter. Examples of valid profile media-type parameters in HTTP messages are:</p></div>
 <div class="listingblock">
 <div class="content monospaced">
-<pre> Accept: application/vnd.amundsen.uber+json;profile=http://example.org/profiles/vcard
- Content-Type: application/vnd.amundsen.uber+xml;profile=http://example.org/profiles/vcard http://schema.org/Person</pre>
+<pre> Accept: application/vnd.uber+json;profile=http://example.org/profiles/vcard
+ Content-Type: application/vnd.uber+xml;profile=http://example.org/profiles/vcard http://schema.org/Person</pre>
 </div></div>
 </div>
 <div class="sect2">
@@ -1154,7 +1154,7 @@ Within the UBER document body as a <span class="monospaced">data</span> element 
 <div class="sect1">
 <h2 id="_extensibility">7. Extensibility</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>This specification describes the UBER document-format&#8217;s markup vocabulary. Markup from other vocabularies ("foreign markup") can be used in an UBER document. Any extensions to the UBER Hypermedia vocabulary MUST not redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the UBER vocabulary SHOULD ignore them.</p></div>
+<div class="paragraph"><p>This specification describes the UBER document-format&#8217;s markup vocabulary. Markup from other vocabularies ("foreign markup") can be used in an UBER document. Any extensions to the UBER Hypermedia vocabulary MUST NOT redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the UBER vocabulary SHOULD ignore them.</p></div>
 <div class="paragraph"><p>The details of designing and implementing UBER extensions is beyond the scope of this document.</p></div>
 <div class="admonitionblock">
 <table><tr>
@@ -1345,7 +1345,7 @@ Stephen Mizell.</p></div>
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-05-02 18:56:42 EDT
+Last updated 2015-05-12 17:45:14 EDT
 </div>
 </div>
 </body>
