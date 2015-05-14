@@ -13,7 +13,7 @@ Authors::
  * Irakli Nadareishvili, irakli@gmail.com 
   
 Status::
-  *[black yellow-background]#Stable Draft#* -- _It is safe to build demo apps on this stable draft._
+  *[black yellow-background]#Stable Draft#* 
 
 ////
   *[white red-background]#Working Draft#* -- _Only experimental and `proof-of-concept' apps should be built on this unstable draft._
