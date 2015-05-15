@@ -14,7 +14,7 @@ Assume the values supplied are:
 *** HTTP Request ***
 POST /people/ HTTP/1.1
 Host: example.org
-Accept-Type: application/vnd.amundsen-uber+xml
+Accept-Type: application/vnd.uber+xml
 Content-Type: application/x-www-form-urlencoded
 Content-Length: xxx
 
