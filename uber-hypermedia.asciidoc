@@ -13,17 +13,18 @@ Authors::
  * Irakli Nadareishvili, irakli@gmail.com 
   
 Status::
-  *[white red-background]#Working Draft#*
+  *[black yellow-background]#Stable Draft#* 
 
 ////
-  *[white blue-background]#Submitted to IANA#*
-  *[white green-background]#Approved by IANA#*
+  *[white red-background]#Working Draft#* -- _Only experimental and `proof-of-concept' apps should be built on this unstable draft._
+  *[white blue-background]#Submitted to IANA#* -- _This specification is not expected to introduce any breaking changes for this media-type._
+  *[white green-background]#Approved by IANA#* -- _This specification will not introduce any breaking changes for this media-type._
 ////
 
 Last Updated::
   {docdate}
 Proposed IANA Registrations::
-  +application/vnd.amundsen-uber+xml+, +application/vnd.amundsen-uber+json+
+  +application/vnd.uber+xml+, +application/vnd.uber+json+
 Supported H-Factors::
   LO, LE, LT, LI, LN, CR, CU, CM, CL
 
@@ -196,7 +197,7 @@ When the +<data>+ element has a +url+ property but no +action+ property, it SHOU
 In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.
 
 +accepting+::
-  Contains one or more media type identifiers to expect when recieving request bodies. The contents of this property SHOULD indicate the formats in which the server is able to return a response body. For HTTP implementations the contents of this property SHOULD be used as the value for the +Accept+ header. If this property is missing, the setting should be assumed to be set to the same value as that of the currently loaded representation (+application/vnd.uber-amundsen+xml+ or +application/vnd.uber-amundsen+json+).
+  Contains one or more media type identifiers to expect when recieving request bodies. The contents of this property SHOULD indicate the formats in which the server is able to return a response body. For HTTP implementations the contents of this property SHOULD be used as the value for the +Accept+ header. If this property is missing, the setting should be assumed to be set to the same value as that of the currently loaded representation (+application/vnd.uber+xml+ or +application/vnd.uber+json+).
 +
 In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.
 
@@ -321,8 +322,8 @@ Depending on the protocol in use, one or more of these methods MAY be used in th
 Profile information can be supplied via the media type profile parameter. Examples of valid profile media-type parameters in HTTP messages are:
 
 ----
- Accept: application/vnd.amundsen.uber+json;profile=http://example.org/profiles/vcard
- Content-Type: application/vnd.amundsen.uber+xml;profile=http://example.org/profiles/vcard http://schema.org/Person
+ Accept: application/vnd.uber+json;profile=http://example.org/profiles/vcard
+ Content-Type: application/vnd.uber+xml;profile=http://example.org/profiles/vcard http://schema.org/Person
 ----
 
 === Profile Link Header
@@ -342,7 +343,7 @@ Profile information can be supplied as one or more +data+ elements within an UBE
 ----
 
 == Extensibility
-This specification describes the UBER document-format's markup vocabulary. Markup from other vocabularies ("foreign markup") can be used in an UBER document. Any extensions to the UBER Hypermedia vocabulary MUST not redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the UBER vocabulary SHOULD ignore them.
+This specification describes the UBER document-format's markup vocabulary. Markup from other vocabularies ("foreign markup") can be used in an UBER document. Any extensions to the UBER Hypermedia vocabulary MUST NOT redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the UBER vocabulary SHOULD ignore them.
 
 The details of designing and implementing UBER extensions is beyond the scope of this document.
 
