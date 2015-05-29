@@ -243,13 +243,13 @@ include::includes/error-sample.js[]
 ----
 
 == Implementation Guidelines
-Since the UBER messsage format was designed to work with multiple application protocols (HTTP, CoAP, etc.), there needs to be some guidelines for creating a protocol-specific implementation that supports UBER documents. Below is the HTTP guidance for UBER documents. This can be used as a guide in creating (and documenting) other protocol-specific implemenations.
+Since the UBER messsage format was designed to work with multiple application protocols (HTTP, CoAP, etc.), there needs to be some guidelines for creating a protocol-specific implementation that supports UBER documents. Below is the HTTP guidance for UBER documents. This can be used as a guide in creating (and documenting) other protocol-specific implementations.
 
 === Supporting UBER Documents over HTTP
-This section decribes the details of implementing UBER support over HTTP.
+This section describes the details of implementing UBER support over HTTP.
 
 ==== Mapping UBER +action+ Values to HTTP Methods
-When implementating support for UBER documents over HTTP one of the key details is to map the value of UBER's +action+ property to HTTP methods. Table #1 below provides this mapping:
+When implementing support for UBER documents over HTTP one of the key details is to map the value of UBER's +action+ property to HTTP methods. Table #1 below provides this mapping:
 
 .Mapping HTTP Methods to UBER +action+ Values
 [grid="rows", format="csv"]
@@ -272,7 +272,7 @@ include::includes/uber-query-string.txt[]
 ----
 
 ==== Using UBER +model+ Values to create HTTP Request Bodies
-Any +model+ value associated with a +data+ element SHOULD be convereted into a valid HTTP request body using the rules contained in <<rfc6570,[RFC6570]>>. The follwing example shows how an UBER document snippet is converted into a valid HTTP request body:
+Any +model+ value associated with a +data+ element SHOULD be converted into a valid HTTP request body using the rules contained in <<rfc6570,[RFC6570]>>. The follwing example shows how an UBER document snippet is converted into a valid HTTP request body:
 
 .Converting an UBER +append+ Action into an HTTP Request
 ----
