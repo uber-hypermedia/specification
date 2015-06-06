@@ -14,6 +14,7 @@
     </data>
     <data name="balance"
       rel="https://example.com/rels/http-problem#balance">
+      30
     </data>  
   </error>
 </uber>
