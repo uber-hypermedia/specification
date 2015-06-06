@@ -400,7 +400,9 @@ Mark W. Foster,
 Ben Hamill,
 Steve Klabnik,
 Matthew McClure,
-Stephen Mizell.
+Stephen Mizell,
+Thomas Eizinger,
+Erik Wilde.
 
 
 .
