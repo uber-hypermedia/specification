@@ -94,7 +94,7 @@ Below is a list of all the possible properties in an UBER document:
 +accepting+::
   Contains one or more media type identifiers to expect when receiving request bodies.
 +value+::
-  In the XML variant of the UBER mesage format, inner text of the +<data>+ element contains the value associated with that element. In the JSON variant there is a +value+ property that contains the associated value.
+  In the XML variant of the UBER message format, inner text of the +<data>+ element contains the value associated with that element. In the JSON variant there is a +value+ property that contains the associated value.
 +version+::
   Indicates the UBER document's version information.
 
@@ -157,10 +157,10 @@ The +<data>+ element is the key element in the model. A valid UBER document SHOU
   The document-wide unique identifier for this element. The value of +id+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +id+ property is present, it SHOULD be treated as an in-document reference as described in section 3.5 of <<rfc3986,[RFC3986]>>.
 
 +name+::
-  A document-wide non-unique identifer for this element. The value of +name+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +name+ property is present it MAY be used as a variable in the UBER +model+ property as described in <<rfc6570,[RFC6570]>>.
+  A document-wide non-unique identifier for this element. The value of +name+ must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). If the +name+ property is present it MAY be used as a variable in the UBER +model+ property as described in <<rfc6570,[RFC6570]>>.
 
 +rel+::
-  Contains a list of link relation values. These values SHOULD conform to the guidance provided in <<rfc5988, [RFC5988]>>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link realtion values appears as an array.
+  Contains a list of link relation values. These values SHOULD conform to the guidance provided in <<rfc5988, [RFC5988]>>. In the XML variant the list of link relation values appears as a space-separated list. In the JSON variant the list of link relation values appears as an array.
 +
 In UBER documents, the +rel+ property is used to supply domain-related semantic information for the associated +data+ element. This applies equally to +data+ elements used as hypermedia links (e.g. those with a valid +url+ property) and +data+ elements used to carry simple values (e.g. strings and numbers). 
 
@@ -202,7 +202,7 @@ In the XML variant the list of media-type identifiers appears as a space-separat
 In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.
 
 +value+::
-  In the XML variant of the UBER mesage format, inner text of the +<data>+ element contains the value associated with that element.
+  In the XML variant of the UBER message format, inner text of the +<data>+ element contains the value associated with that element.
 +
 In the JSON variant there is a +value+ property that contains the associated value. Note that the content of this field MUST NOT be a JSON object or array and MUST be one of the following scalar values (listed in Section 2.1 of <<rfc4627,[RFC4627]>>):
 +
@@ -243,7 +243,7 @@ include::includes/error-sample.js[]
 ----
 
 == Implementation Guidelines
-Since the UBER messsage format was designed to work with multiple application protocols (HTTP, CoAP, etc.), there needs to be some guidelines for creating a protocol-specific implementation that supports UBER documents. Below is the HTTP guidance for UBER documents. This can be used as a guide in creating (and documenting) other protocol-specific implementations.
+Since the UBER message format was designed to work with multiple application protocols (HTTP, CoAP, etc.), there needs to be some guidelines for creating a protocol-specific implementation that supports UBER documents. Below is the HTTP guidance for UBER documents. This can be used as a guide in creating (and documenting) other protocol-specific implementations.
 
 === Supporting UBER Documents over HTTP
 This section describes the details of implementing UBER support over HTTP.
