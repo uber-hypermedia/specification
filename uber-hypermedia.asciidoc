@@ -197,7 +197,7 @@ When the +<data>+ element has a +url+ property but no +action+ property, it SHOU
 In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.
 
 +accepting+::
-  Contains one or more media type identifiers to expect when recieving request bodies. The contents of this property SHOULD indicate the formats in which the server is able to return a response body. For HTTP implementations the contents of this property SHOULD be used as the value for the +Accept+ header. If this property is missing, the setting should be assumed to be set to the same value as that of the currently loaded representation (+application/vnd.uber+xml+ or +application/vnd.uber+json+).
+  Contains one or more media type identifiers to expect when receiving request bodies. The contents of this property SHOULD indicate the formats in which the server is able to return a response body. For HTTP implementations the contents of this property SHOULD be used as the value for the +Accept+ header. If this property is missing, the setting should be assumed to be set to the same value as that of the currently loaded representation (+application/vnd.uber+xml+ or +application/vnd.uber+json+).
 +
 In the XML variant the list of media-type identifiers appears as a space-separated list. In the JSON variant the list of media-type identifiers appears as an array.
 
