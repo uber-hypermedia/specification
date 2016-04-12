@@ -245,7 +245,7 @@ include::includes/error-sample.js[]
 == Implementation Guidelines
 Since the UBER message format was designed to work with multiple application protocols (HTTP, CoAP, etc.), there needs to be some guidelines for creating a protocol-specific implementation that supports UBER documents. Below is the HTTP guidance for UBER documents. This can be used as a guide in creating (and documenting) other protocol-specific implementations.
 
-=== Supporting UBER Documents over HTTP
+=== Supporting UBER Documents Over HTTP
 This section describes the details of implementing UBER support over HTTP.
 
 ==== Mapping UBER +action+ Values to HTTP Methods
@@ -279,7 +279,7 @@ Any +model+ value associated with a +data+ element SHOULD be converted into a va
 include::includes/uber-request-body.txt[]
 ----
 
-=== Supporting UBER Documents Over other Protocols
+=== Supporting UBER Documents Over Other Protocols
 It is possible that UBER documents can be exchanged using a protocol other than HTTP. In that case, it is the responsibility of the implementor to provide a guideline document that covers the same material included in the "Implementation Guidelines" of the UBER document specification.
 
 == Document Examples
