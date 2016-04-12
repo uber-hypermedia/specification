@@ -2,7 +2,7 @@
 <data name="create" 
   rel="http://example.org/rels/create" 
   url="http://example.org/people/" 
-  model="g={givenName}&f={familyName}&e={email}&a={avatarUrl}"
+  model="g={givenName}&amp;f={familyName}&amp;e={email}&amp;a={avatarUrl}"
   action="append" />
 
 Assume the values supplied are:

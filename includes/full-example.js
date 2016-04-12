@@ -87,7 +87,7 @@
                 "data" :
                 [
                   {"name" : "streetAddress", "value" : "123 Main Street", "label" : "Street Address"},
-                  {"name" : "addressLocalitly", "value" : "Byteville", "label" : "City"},
+                  {"name" : "addressLocality", "value" : "Byteville", "label" : "City"},
                   {"name" : "addressRegion", "value" : "MD", "label" : "State"},
                   {"name" : "postalCode", "value" : "12345", "label" : "ZIP"}
                 ]
@@ -109,7 +109,7 @@
                 "data" : 
                 [
                   {"name" : "streetAddress", "value" : "1456 Grand Ave.", "label" : "Street Address"},
-                  {"name" : "addressLocalitly", "value" : "Byteville", "label" : "City"},
+                  {"name" : "addressLocality", "value" : "Byteville", "label" : "City"},
                   {"name" : "addressRegion", "value" : "MD", "label" : "State"},
                   {"name" : "postalCode", "value" : "12345", "label" : "ZIP"}
                 ]
@@ -118,7 +118,7 @@
           }
         ]
       }
-    ]    
+    ]
   }
 }
 
